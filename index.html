@@ -2012,25 +2012,29 @@
       .hero__sub { width: 100%; font-size: 15px; line-height: 24px; }
       .hero__buttons { flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
       .hero__photo-left, .hero__photo-right { display: none; }
+      .hero__bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
       .hero__phones {
         position: relative; top: auto; left: auto;
         width: 85%; max-width: 380px; height: auto;
-        margin: auto auto 0;
-        display: block; flex-shrink: 0;
-        align-self: flex-end;
+        margin: 0 auto;
+        display: block;
       }
       .hero__skyline { display: none; }
       .hero__cloud-track { opacity: 0.07; }
       /* Restore white fade */
       .hero__fade {
         display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        position: relative;
         width: 100%; height: 80px;
         background: linear-gradient(to bottom, transparent 0%, #fff 100%);
+        margin-top: -80px;
         pointer-events: none;
-        z-index: 2;
       }
 
       /* ── Trusted By ── */
@@ -3157,11 +3161,11 @@
     </div>
   </div>
 
-  <!-- Phones + plane composite -->
-  <img class="hero__phones" src="https://www.figma.com/api/mcp/asset/e8223133-fe00-4b89-8801-de0356335337" alt="">
-
-  <!-- Bottom fade to white -->
-  <div class="hero__fade"></div>
+  <!-- Phones + fade wrapper — pinned to bottom on mobile -->
+  <div class="hero__bottom">
+    <img class="hero__phones" src="https://www.figma.com/api/mcp/asset/e8223133-fe00-4b89-8801-de0356335337" alt="">
+    <div class="hero__fade"></div>
+  </div>
 
 </header>
 

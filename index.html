@@ -2004,11 +2004,14 @@
       }
       .hero__content {
         position: relative;
+        width: 100%;
         flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
         padding-top: 80px;
+        padding-bottom: 300px;
+        box-sizing: border-box;
         z-index: 1;
       }
       .hero__group {
@@ -2016,6 +2019,7 @@
         display: flex; flex-direction: column;
         align-items: center; text-align: center;
         gap: 24px;
+        margin: 0 auto;
       }
       .hero__heading { font-size: 34px; line-height: 39px; }
       .hero__sub { width: 100%; font-size: 15px; line-height: 24px; }
@@ -2252,6 +2256,7 @@
       .hero__sub { font-size: 14px; }
       .hero__buttons .btn { padding: 12px 20px; font-size: 14px; }
       .hero__phones { width: 92%; margin-top: 24px; }
+      .hero__content { padding-bottom: 260px; }
 
       /* Trusted */
       .trusted__card { width: 112px; height: 46px; }

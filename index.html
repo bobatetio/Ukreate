@@ -1997,7 +1997,7 @@
 
       /* ── Hero ── */
       .hero {
-        height: auto; min-height: 0; padding-bottom: 0;
+        height: auto; min-height: 100dvh; padding-bottom: 0;
         display: flex; flex-direction: column; align-items: center;
         overflow: hidden;
       }
@@ -2005,7 +2005,9 @@
         position: relative; left: auto; top: auto; transform: none;
         width: 88%; max-width: 440px;
         padding-top: 90px; margin: 0 auto; text-align: center;
+        gap: 36px;
       }
+      .hero__badge { margin-bottom: 8px; }
       .hero__heading { font-size: 34px; line-height: 39px; }
       .hero__sub { width: 100%; font-size: 15px; line-height: 24px; }
       .hero__buttons { flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }

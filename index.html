@@ -1657,16 +1657,22 @@
       text-transform: capitalize;
     }
 
-    .pf-card__img {
+    .pf-card__img-wrap {
       position: absolute;
       bottom: 0;
       left: 41px;
       right: 0;
-      width: auto;
       height: 233px;
-      object-fit: cover;
-      object-position: top center;
       border-radius: 18px 0 0 0;
+      overflow: hidden;
+    }
+    .pf-card__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
       pointer-events: none;
     }
 
@@ -2125,7 +2131,7 @@
       .platform__grid { width: 100%; margin-top: 28px; gap: 14px; }
       /* Two-column grid, taller cards so text + image both visible */
       .pf-card { width: calc(50% - 7px); height: 300px; }
-      .pf-card__img { height: 160px; left: 20px !important; right: 0 !important; width: auto !important; border-radius: 14px 0 0 0; }
+      .pf-card__img-wrap { height: 160px; left: 20px !important; right: 0 !important; border-radius: 14px 0 0 0; }
 
       /* ── Testimonials ── */
       .testimonials { height: auto; min-height: 0; padding: 48px 24px 56px; overflow: visible; }
@@ -2254,7 +2260,7 @@
 
       /* Platform grid — single column */
       .pf-card { width: 100%; height: 280px; }
-      .pf-card__img { left: 16px !important; right: 0 !important; width: auto !important; height: 150px; border-radius: 12px 0 0 0; }
+      .pf-card__img-wrap { left: 16px !important; right: 0 !important; height: 150px; border-radius: 12px 0 0 0; }
 
       /* Testimonials */
       .tc-card { padding: 36px 18px 24px; margin-top: 56px; }
@@ -3670,7 +3676,9 @@
         <h3 class="pf-card__title">Vetted Creator Network</h3>
         <p class="pf-card__desc">Every creator is portfolio-reviewed and audience-verified</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
     <div class="pf-card">
@@ -3678,7 +3686,9 @@
         <h3 class="pf-card__title">UGC + Native Posting</h3>
         <p class="pf-card__desc">Get assets for your channels AND reach their audience</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
     <div class="pf-card">
@@ -3686,7 +3696,9 @@
         <h3 class="pf-card__title">Campaign Dashboard</h3>
         <p class="pf-card__desc">Track deliverables, deadlines, and performance in real-time</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
     <div class="pf-card">
@@ -3694,7 +3706,9 @@
         <h3 class="pf-card__title">Direct Messaging</h3>
         <p class="pf-card__desc">Communicate with creators without leaving the platform</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
     <div class="pf-card">
@@ -3702,7 +3716,9 @@
         <h3 class="pf-card__title">Analytics &amp; Reporting</h3>
         <p class="pf-card__desc">See reach, engagement, and booking attribution</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
     <div class="pf-card">
@@ -3710,7 +3726,9 @@
         <h3 class="pf-card__title">Contracts &amp; Insurance</h3>
         <p class="pf-card__desc">Every collaboration is legally protected by us</p>
       </div>
-      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+      <div class="pf-card__img-wrap">
+        <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/b7a81f46-883d-4f4c-9933-71ca137d1ce9" alt="">
+      </div>
     </div>
 
   </div>

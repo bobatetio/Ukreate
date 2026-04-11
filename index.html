@@ -10,13 +10,13 @@
     section, article, header, footer, nav { display: block; border: none; }
 
     html {
-      overflow-x: hidden;
+      overflow-x: clip;
     }
 
     body {
       min-height: 100vh;
       background: #fff;
-      overflow-x: hidden;
+      overflow-x: clip;
       max-width: 100vw;
     }
 
@@ -74,7 +74,7 @@
       top: 20px;
       height: 0;
       overflow: visible;
-      z-index: 100;
+      z-index: 1000;
       width: 1440px;
       margin: 0 auto;
       pointer-events: none;
@@ -3798,8 +3798,8 @@
         }
       });
     }, {
-      threshold: 0.08,
-      rootMargin: isMobile ? '0px 0px 0px 0px' : '0px 0px -60px 0px'
+      threshold: 0.15,
+      rootMargin: isMobile ? '0px 0px 0px 0px' : '0px 0px -120px 0px'
     });
 
     hiddenSteps.forEach(function (step) {

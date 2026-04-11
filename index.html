@@ -1,0 +1,4422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ukreate – Find Elite Creators</title>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Marcellus&family=Lato:wght@400;700&family=Inter:wght@400;600&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    section, article, header, footer, nav { display: block; border: none; }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #fff;
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+
+    /* ── HEADER SECTION ── */
+    .hero {
+      position: relative;
+      width: 1440px;
+      height: 1024px;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #0f2d36 0%, #e8faff 100%);
+      margin: 0 auto;
+    }
+
+    /* City skyline bg */
+    .hero__skyline {
+      position: absolute;
+      top: 148px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1406px;
+      height: 936px;
+      opacity: 0.10;
+      pointer-events: none;
+      object-fit: cover;
+    }
+
+    /* Cloud/wave overlay – looping drift */
+    .hero__cloud-track {
+      position: absolute;
+      top: -220px;
+      left: 0;
+      display: flex;
+      width: 2880px; /* two cloud widths side by side */
+      pointer-events: none;
+      animation: cloudDrift 40s linear infinite;
+      overflow: hidden;
+    }
+
+    .hero__cloud-track img {
+      width: 1440px;
+      height: 754px;
+      opacity: 0.20;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    @keyframes cloudDrift {
+      from { transform: translateX(-1440px); }
+      to   { transform: translateX(0px); }
+    }
+
+    /* ── NAVBAR STICKY WRAPPER ── */
+    .nav-sticky {
+      position: sticky;
+      top: 20px;
+      height: 0;
+      overflow: visible;
+      z-index: 100;
+      width: 1440px;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: relative;
+      margin: 0 auto;
+      pointer-events: auto;
+      width: 994px;
+      height: 72px;
+      background: #0f262d;
+      border: 1px solid #37393c;
+      border-radius: 20px;
+      box-shadow: 0px 4px 4px 0px rgba(38, 40, 46, 0.37);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar__logo {
+      position: absolute;
+      left: 27px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 35px;
+      width: 115px;
+      object-fit: contain;
+    }
+
+    .navbar__divider {
+      position: absolute;
+      left: 536px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .navbar__links {
+      position: absolute;
+      left: calc(50% - 50px);
+      transform: translateX(-50%);
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #fafafa;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+
+    .navbar__links a {
+      color: inherit;
+      text-decoration: none;
+      opacity: 0.9;
+    }
+    .navbar__links a:hover { opacity: 1; }
+
+    .navbar__actions {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Shared button base */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 20px;
+      border-radius: 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .btn--gold {
+      background: linear-gradient(180deg, rgba(147,113,46,0.15) 0%, rgba(255,255,255,0) 100%),
+                  linear-gradient(90deg, #d7a543 0%, #d7a543 100%);
+      border: 1px solid rgba(255,255,255,0.56);
+      box-shadow: 0px 1px 2px 0px rgba(147,113,46,0.37), 0px 0px 0px 2px rgba(147,113,46,0.4);
+      color: #fff;
+      text-shadow: 0px 0px 0.5px white;
+    }
+
+    .btn--white {
+      background: linear-gradient(180deg, rgba(147,113,46,0.15) 0%, rgba(255,255,255,0) 100%),
+                  linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+      border: 1px solid rgba(255,255,255,0.56);
+      box-shadow: 0px 1px 2px 0px rgba(255,255,255,0.37), 0px 0px 0px 2px rgba(255,255,255,0.4);
+      color: #102e37;
+    }
+
+    .btn--ghost {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01) 0%, rgba(255,255,255,0) 100%);
+      border: none;
+      box-shadow: 0px 1px 2px 0px rgba(255,255,255,0.37), 0px 0px 0px 2px rgba(255,255,255,0.4);
+      color: #fff;
+    }
+
+    /* ── HERO CONTENT ── */
+    .hero__content {
+      position: absolute;
+      top: 130px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 740px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 13px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 9999px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #fff;
+      line-height: 16px;
+    }
+
+    .hero__text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .hero__heading {
+      font-family: 'Marcellus SC', serif;
+      font-size: 64px;
+      letter-spacing: -1.28px;
+      line-height: 62.1px;
+      background: linear-gradient(101.34deg, #ffffff 0.18%, #d7a543 221.09%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    .hero__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 27px;
+      color: #fff;
+      width: 558px;
+      text-align: center;
+    }
+
+    .hero__buttons {
+      display: flex;
+      gap: 18.592px;
+      align-items: center;
+    }
+
+    .hero__buttons .btn {
+      padding: 12.782px 23.239px;
+      border-radius: 13.944px;
+      font-size: 16px;
+      line-height: 23.239px;
+    }
+
+    .hero__buttons .btn--gold {
+      background: linear-gradient(5.71deg, #d7a543 13.297%, #efc470 89.683%);
+      border: 1.162px solid rgba(215, 165, 67, 0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255, 255, 255, 0.4);
+      text-shadow: 0px 0px 0.581px white;
+    }
+
+    .hero__buttons .btn--white {
+      background: linear-gradient(180deg, rgba(147, 113, 46, 0.15) 0%, rgba(255, 255, 255, 0) 100%),
+                  linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+      border: 1.162px solid rgba(255, 255, 255, 0.56);
+      box-shadow: 0px 1.162px 2.324px 0px rgba(255, 255, 255, 0.37), 0px 0px 0px 2.324px rgba(255, 255, 255, 0.4);
+      text-shadow: 0px 0px 0.581px white;
+      color: #102e37;
+    }
+
+    /* ── PHONES + PLANE COMPOSITE ── */
+    .hero__phones {
+      position: absolute;
+      top: 518px;
+      left: 291px;
+      width: 930px;
+      height: 557px;
+      pointer-events: none;
+      z-index: 2;
+      object-fit: cover;
+    }
+
+    /* ── FLOATING CREATOR PHOTOS ── */
+    .hero__photo-left {
+      position: absolute;
+      left: 52px;
+      top: 246px;
+      width: 257px;
+      height: 255px;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .hero__photo-right {
+      position: absolute;
+      left: 1146px;
+      top: 265px;
+      width: 245px;
+      height: 227px;
+      object-fit: cover;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    /* ── BOTTOM WHITE GRADIENT ── */
+    .hero__fade {
+      position: absolute;
+      bottom: 0;
+      left: -11px;
+      right: -11px;
+      height: 364px;
+      background: linear-gradient(1deg, rgb(255,255,255) 33.82%, rgba(255,255,255,0) 86.05%);
+      pointer-events: none;
+      z-index: 4;
+    }
+    /* ── TRUSTED BY ── */
+    .trusted {
+      width: 1440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+      padding: 48px 100px;
+      background: #fff;
+      border: none;
+      border-bottom: none;
+    }
+
+    .trusted__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #102e37;
+      text-align: center;
+    }
+
+    .trusted__logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+    }
+
+    .trusted__card {
+      width: 163px;
+      height: 66px;
+      background: #fff;
+      border: 0.858px solid #000;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trusted__card img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+
+    /* ── PLATFORM OVERVIEW ── */
+    .platform-overview {
+      width: 1440px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 50px 0 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Video wrapper — allows fade to bleed below the video edge */
+    .pov__video-wrap {
+      position: relative;
+      width: 656px;
+      height: 282px;
+      flex-shrink: 0;
+    }
+
+    .pov__video {
+      width: 656px;
+      height: 282px;
+      border-radius: 20px;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+    }
+
+    /* Gradient fade — starts halfway up the video, bleeds 40px below */
+    .pov__video-fade {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      right: -60px;
+      height: 320px;
+      background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.75) 55%, #fff 75%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Video element inside the box */
+    .pov__video video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .pov__video-wrap.is-playing video {
+      opacity: 1;
+    }
+
+    .pov__video-wrap.is-playing .pov__play-btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .pov__video-wrap.is-playing .pov__video-fade {
+      opacity: 0;
+    }
+
+    .pov__play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.3s ease, transform 0.15s ease;
+      z-index: 20;
+    }
+
+    .pov__play-btn:hover {
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .pov__play-btn svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 4px;
+    }
+
+    /* Subtitle */
+    .pov__subtitle {
+      font-family: 'Marcellus', serif;
+      font-size: 32px;
+      line-height: 41.5px;
+      color: #102e37;
+      text-align: center;
+      width: 684px;
+      margin-top: -20px;
+      position: relative;
+      z-index: 15;
+    }
+
+    /* Features grid */
+    .pov__features {
+      display: grid;
+      grid-template-columns: repeat(3, 277px);
+      gap: 30px 35px;
+      margin-top: 50px;
+      border: none;
+      position: relative;
+      z-index: 15;
+    }
+
+    .pov__feature {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pov__feature-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 26px;
+      color: #102e37;
+    }
+
+    .pov__feature-name img {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .pov__feature-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 26px;
+      color: #b4bcd0;
+      padding-left: 25px;
+    }
+
+    .pov__cta {
+      margin-top: 50px;
+      position: relative;
+      z-index: 15;
+    }
+
+    /* ── COMPARISON SECTION ── */
+    .comparison {
+      position: relative;
+      width: 1440px;
+      height: 980px;
+      overflow: hidden;
+      margin: 0 auto;
+      opacity: 0.70;
+    }
+
+    .comparison__bg {
+      position: absolute;
+      width: 1440px;
+      height: 985px;
+      top: -5px;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .comparison__bg img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .comparison__header {
+      position: absolute;
+      left: 399px;
+      top: 63px;
+      width: 642px;
+      display: flex;
+      flex-direction: column;
+      gap: 21px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .comparison__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .comparison__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+      margin: 0;
+    }
+
+    .comparison__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+    }
+
+    .comparison__cards {
+      position: absolute;
+      top: 337px;
+      left: calc(50% + 0.5px);
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      padding-right: 17px;
+      z-index: 1;
+    }
+
+    .comparison__card-outer {
+      width: 386.891px;
+      height: 484.359px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: -17px;
+      flex-shrink: 0;
+    }
+
+    .comparison__card--light-rot { transform: rotate(3deg); }
+    .comparison__card--dark-rot  { transform: rotate(-3deg); }
+
+    .comparison__card {
+      position: relative;
+      width: 363px;
+      height: 466px;
+      border-radius: 50px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .comparison__card--light { background: rgba(226, 224, 221, 0.74); }
+    .comparison__card--dark  { background: #102e37; }
+
+    .comparison__card-content {
+      position: absolute;
+      left: 51px;
+      top: 30px;
+      width: 261px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 31px;
+    }
+
+    .comparison__badge {
+      background: #fff;
+      border-radius: 40px;
+      padding: 20px 40px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      white-space: nowrap;
+      line-height: 14.021px;
+    }
+
+    .comparison__item {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      line-height: 20px;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+    }
+
+    .comparison__card--light .comparison__item { color: rgba(0, 0, 0, 0.52); }
+    .comparison__card--dark  .comparison__item { color: #fff; }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: #fff;
+      padding-top: 80px;
+    }
+
+    /* Zero-height sticky wrapper keeps the ellipse pinned to viewport while the section is visible */
+    .hiw__bg-sticky {
+      position: sticky;
+      top: 0;
+      height: 0;
+      overflow: visible;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hiw__bg-ellipse {
+      position: absolute;
+      left: 216px;
+      top: 26px;
+      width: 1008px;
+      height: 526px;
+      pointer-events: none;
+    }
+
+    .hiw__bg-ellipse img {
+      position: absolute;
+      top: -29.28%;
+      left: -15.28%;
+      width: 130.56%;
+      height: 158.56%;
+      pointer-events: none;
+    }
+
+    .hiw__inner {
+      display: flex;
+      align-items: flex-start;
+      padding-top: 173px;
+      padding-bottom: 140px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hiw__left {
+      width: 820px;
+      padding-left: 164px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 120px;
+      align-self: flex-start;
+      z-index: 1;
+    }
+
+    .hiw__left .btn--gold {
+      background: linear-gradient(5.745deg, #d7a543 13.297%, #efc470 89.683%);
+      border: 1.162px solid rgba(215, 165, 67, 0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255, 255, 255, 0.4);
+      padding: 12.782px 23.239px;
+      border-radius: 13.944px;
+      font-size: 16px;
+      line-height: 23.239px;
+      text-shadow: 0px 0px 0.581px white;
+      color: #fff;
+    }
+
+    .hiw__left-content {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .hiw__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .hiw__left-body {
+      display: flex;
+      flex-direction: column;
+      gap: 21px;
+      align-items: flex-start;
+    }
+
+    .hiw__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+      width: 470px;
+    }
+
+    .hiw__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+    }
+
+    .hiw__right {
+      width: 360px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      padding-top: 120px;
+    }
+
+    .hiw__step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 33px;
+      padding-bottom: 74px;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .hiw__step:last-child {
+      padding-bottom: 0;
+    }
+
+    .hiw__step--hidden {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .hiw__step--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hiw__step-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10.5px;
+      width: 234px;
+    }
+
+    .hiw__step-badge {
+      width: 23px;
+      height: 23px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #aeecff 0%, #8fd3e8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 9px;
+      letter-spacing: 1.32px;
+      color: #102e37;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .hiw__step-title {
+      font-family: 'Marcellus', serif;
+      font-size: 22px;
+      letter-spacing: 0.06px;
+      line-height: 23.44px;
+      color: #000;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .hiw__step-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      letter-spacing: -0.13px;
+      line-height: 18.43px;
+      color: #696a72;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .hiw__card {
+      width: 360px;
+      height: 278px;
+      border-radius: 35px;
+      box-shadow: 0px 2.633px 15.795px 0px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .hiw__card--teal { background: linear-gradient(to bottom, #102e37, #2e839d); }
+    .hiw__card--gold { background: linear-gradient(to bottom, #d7a543, #ea4359); }
+    .hiw__card--blue { background: linear-gradient(to bottom, #65d2e9, #102e37); }
+
+    .hiw__card-img {
+      position: absolute;
+      left: 41px;
+      top: 47px;
+      width: 319px;
+      height: 231px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+
+    /* ── FEATURED CREATORS ── */
+    .creators {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: #fafeff;
+      padding-bottom: 80px;
+      overflow: hidden;
+    }
+
+    .creators__bg-ellipse {
+      position: absolute;
+      left: 190px;
+      top: 90px;
+      width: 1008px;
+      height: 526px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .creators__bg-ellipse img {
+      position: absolute;
+      top: -29.28%;
+      left: -15.28%;
+      width: 130.56%;
+      height: 158.56%;
+    }
+
+    .creators__header {
+      padding-top: 63px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 11px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .creators__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .creators__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+      margin-top: 10px;
+    }
+
+    .creators__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+    }
+
+    /* Cards row */
+    .creators__cards {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Base card */
+    .fc2-card {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #000;
+    }
+
+    .fc2-card--side {
+      width: 230px;
+      height: 418px;
+      opacity: 0.30;
+    }
+
+    .fc2-card--center {
+      width: 270px;
+      height: 491px;
+      border: 8.217px solid #102e37;
+      border-radius: 35px;
+      opacity: 1;
+    }
+
+    .fc2-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Verified badge */
+    .fc2-badge {
+      position: absolute;
+      top: 19px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a98a6;
+      border-radius: 20px;
+      height: 24px;
+      width: 85px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      box-shadow: 0px 2px 8px 0px rgba(0,0,0,0.2);
+      z-index: 2;
+      white-space: nowrap;
+    }
+
+    .fc2-badge img {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .fc2-badge span {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #fff;
+      line-height: 24px;
+    }
+
+    /* Bottom info gradient overlay */
+    .fc2-info {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 88px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 70%, transparent 100%);
+      z-index: 2;
+      padding: 8px 9px 9px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 2px;
+    }
+
+    .fc2-card--center .fc2-info {
+      height: 100px;
+      padding: 10px 10px 10px;
+    }
+
+    .fc2-info-row1 {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .fc2-avatar {
+      width: 21px;
+      height: 21px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .fc2-card--center .fc2-avatar {
+      width: 24px;
+      height: 24px;
+    }
+
+    .fc2-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .fc2-handle {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #fff;
+      line-height: 17px;
+    }
+
+    .fc2-card--center .fc2-handle {
+      font-size: 16px;
+    }
+
+    .fc2-location {
+      font-family: 'Lato', sans-serif;
+      font-size: 11.6px;
+      color: #fff;
+      line-height: 17px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .fc2-card--center .fc2-location {
+      font-size: 13px;
+    }
+
+    .fc2-info-row3 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .fc2-stars {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+    }
+
+    .fc2-stars img {
+      width: 12px;
+      height: 12px;
+    }
+
+    .fc2-card--center .fc2-stars img {
+      width: 13px;
+      height: 13px;
+    }
+
+    .fc2-audience {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .fc2-audience img {
+      width: 11px;
+      height: 11px;
+    }
+
+    .fc2-audience span {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      color: #fff;
+    }
+
+    .fc2-card--center .fc2-audience span {
+      font-size: 14px;
+    }
+
+    /* Pagination dots */
+    .creators__dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .creators__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #c0d4d8;
+      flex-shrink: 0;
+    }
+
+    .creators__dot--active {
+      width: 24px;
+      border-radius: 4px;
+      background: #102e37;
+    }
+
+    /* CTA */
+    .creators__cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── PROVEN RESULTS ── */
+    .results {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      overflow: hidden;
+      padding: 63px 0 90px;
+    }
+
+    .results__bg {
+      position: absolute;
+      top: -34px;
+      left: -6px;
+      width: 1440px;
+      height: 1256px;
+      pointer-events: none;
+    }
+
+    .results__bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .results__header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+      text-align: center;
+      width: 642px;
+      margin: 0 auto;
+    }
+
+    .results__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .results__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+      margin-bottom: 21px;
+    }
+
+    .results__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+    }
+
+    /* Case study card */
+    .cs-card {
+      position: relative;
+      z-index: 1;
+      width: 1145px;
+      margin: 70px auto 0;
+      background: #fff;
+      border-radius: 50px;
+      box-shadow: 0px 4px 24px 0px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 34px;
+      padding: 16px 33px 16px 17px;
+      overflow: hidden;
+      align-items: stretch;
+    }
+
+    /* Left: hotel image + thumbnail strip */
+    .cs-left {
+      position: relative;
+      width: 549px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #8f8f8f;
+      flex-shrink: 0;
+      min-height: 0;
+    }
+
+    .cs-hotel-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cs-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 4px;
+      width: 545px;
+      height: 155px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 39%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .cs-thumbs {
+      position: absolute;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .cs-thumb {
+      position: relative;
+      width: 46px;
+      height: 82px;
+      border-radius: 6px;
+      border: 1.5px solid #102e37;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .cs-thumb img.cs-thumb-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cs-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.18s;
+    }
+
+    .cs-thumb:hover .cs-play {
+      background: rgba(0,0,0,0.45);
+    }
+
+    .cs-play svg {
+      width: 18px;
+      height: 18px;
+      filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+    }
+
+    /* Video lightbox modal */
+    .cs-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-modal.is-open {
+      display: flex;
+    }
+
+    .cs-modal-inner {
+      position: relative;
+      width: min(360px, 90vw);
+      aspect-ratio: 9/16;
+      background: #000;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    }
+
+    .cs-modal video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cs-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      border: 1.5px solid rgba(255,255,255,0.4);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .cs-modal-close svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Right: case study details */
+    .cs-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 0;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    .cs-logo-card {
+      width: 163px;
+      height: 66px;
+      background: #fff;
+      border: 0.858px solid #000;
+      border-radius: 13.7px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .cs-logo-card img {
+      max-width: 82%;
+      max-height: 82%;
+      object-fit: contain;
+    }
+
+    .cs-sections {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .cs-section {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .cs-section-title {
+      font-family: 'Marcellus', serif;
+      font-size: 28px;
+      letter-spacing: 0.09px;
+      line-height: 35.6px;
+      color: #102e37;
+    }
+
+    .cs-section-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      letter-spacing: -0.2px;
+      line-height: 26px;
+      color: #696a72;
+    }
+
+    .cs-divider {
+      border: none;
+      border-top: 1px solid rgba(0,0,0,0.10);
+      margin: 0;
+    }
+
+    /* Stats */
+    .cs-stats {
+      display: flex;
+      gap: 19px;
+      align-items: flex-start;
+    }
+
+    .cs-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 91px;
+    }
+
+    .cs-stat-value {
+      font-family: 'Lato', sans-serif;
+      font-size: 27px;
+      letter-spacing: 0.09px;
+      line-height: 35.6px;
+      color: #102e37;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      white-space: nowrap;
+    }
+
+    .cs-trending {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .cs-stat-label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+      line-height: 26px;
+      color: #696a72;
+    }
+
+    /* CTA row */
+    .cs-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .cs-cta-btn {
+      background: linear-gradient(4.914deg, #d7a543 13.297%, #efc470 89.683%);
+      border: 1.162px solid rgba(215,165,67,0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255,255,255,0.4);
+      padding: 12.782px 23.239px;
+      border-radius: 13.944px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 23.239px;
+      text-shadow: 0px 0px 0.581px white;
+      color: #fff;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .cs-nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cs-nav-btn {
+      width: 49px;
+      height: 49px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .cs-nav-btn svg {
+      transition: opacity 0.2s ease;
+    }
+
+    .cs-nav-btn--prev {
+      background: rgba(217,164,65,0.08);
+    }
+
+    .cs-nav-btn--next {
+      background: #d9a441;
+    }
+
+    .cs-nav-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    /* ── COMPLETE PLATFORM ── */
+    .platform {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 63px 0 100px;
+    }
+
+    .platform__bg-ellipse {
+      position: absolute;
+      left: 196px;
+      top: 90px;
+      width: 1008px;
+      height: 526px;
+      pointer-events: none;
+    }
+
+    .platform__bg-ellipse img {
+      position: absolute;
+      top: -29.28%;
+      left: -15.28%;
+      width: 130.56%;
+      height: 158.56%;
+      pointer-events: none;
+    }
+
+    .platform__header {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 21px;
+      text-align: center;
+      width: 642px;
+      margin: 0 auto;
+    }
+
+    .platform__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .platform__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+    }
+
+    .platform__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+    }
+
+    .platform__grid {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+      width: 1144px;
+      margin: 60px auto 0;
+    }
+
+    .pf-card {
+      position: relative;
+      width: 362px;
+      height: 366px;
+      border-radius: 35px;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #102e37, #2e839d);
+      box-shadow: 0px 2.651px 15.908px 0px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+    }
+
+    .pf-card__text {
+      position: absolute;
+      top: 28px;
+      left: 30px;
+      width: 236px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pf-card__title {
+      font-family: 'Marcellus', serif;
+      font-size: 22px;
+      letter-spacing: 0.06px;
+      line-height: 23.6px;
+      color: #fff;
+      text-transform: capitalize;
+    }
+
+    .pf-card__desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      letter-spacing: -0.13px;
+      line-height: 18.6px;
+      color: rgba(255,255,255,0.82);
+      text-transform: capitalize;
+    }
+
+    .pf-card__img {
+      position: absolute;
+      bottom: 0;
+      left: 41px;
+      width: 321px;
+      height: 233px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: #F5F7F7;
+      height: 710px;
+      overflow: hidden;
+    }
+
+    /* World map background image */
+    .testimonials__map {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: url('https://www.figma.com/api/mcp/asset/94857864-7206-44ff-a46c-bfc2575fdfb5') center/cover no-repeat;
+    }
+
+    /* Left panel */
+    .testimonials__left {
+      position: absolute;
+      z-index: 2;
+      left: 145px;
+      top: 63px;
+      width: 503px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .testimonials__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.021px;
+    }
+
+    .testimonials__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #102e37;
+      width: 470px;
+      margin-top: 10px;
+    }
+
+    .testimonials__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      line-height: 28px;
+      color: #696a72;
+      margin-top: 10px;
+      margin-bottom: 6px;
+    }
+
+    /* Testimonial card */
+    .tc-card {
+      position: absolute;
+      z-index: 4;
+      left: 727px;
+      top: 223px;
+      width: 517px;
+      border-radius: 27px;
+      background: linear-gradient(129deg, #aeecff 0%, #102e37 100%);
+      box-shadow: 0px 4px 10px 0px rgba(114,26,142,0.2);
+      overflow: visible;
+      display: flex;
+      flex-direction: column;
+      padding: 46px 55px 44px 60px;
+      gap: 35px;
+    }
+
+    /* Avatar — overflows top-right of card */
+    .tc-avatar {
+      position: absolute;
+      right: 38px;
+      top: -67px;
+      width: 144px;
+      height: 147px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      overflow: hidden;
+      transform: rotate(-1deg);
+      background: #fff;
+      z-index: 5;
+    }
+
+    .tc-avatar img {
+      width: 106%;
+      height: 100%;
+      object-fit: cover;
+      margin-left: -3%;
+    }
+
+    /* Card inner content */
+    .tc-content {
+      display: flex;
+      flex-direction: column;
+      gap: 35px;
+    }
+
+    .tc-name {
+      font-family: 'Marcellus', serif;
+      font-size: 32px;
+      letter-spacing: 0.06px;
+      line-height: 23.6px;
+      color: #fff;
+      text-transform: capitalize;
+    }
+
+    .tc-role {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.06px;
+      line-height: 23.6px;
+      color: rgba(255,255,255,0.85);
+      text-transform: capitalize;
+      margin-top: 6px;
+    }
+
+    .tc-quote {
+      font-family: 'Lato', sans-serif;
+      font-size: 22px;
+      line-height: 33px;
+      color: #fff;
+      width: 378px;
+    }
+
+    /* Nav buttons */
+    .tc-nav {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .tc-nav-btn {
+      width: 49px;
+      height: 49px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .tc-nav-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .tc-nav-btn--prev { background: rgba(217,164,65,0.08); }
+    .tc-nav-btn--next { background: #d9a441; }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE — TABLET (≤1100px) · MOBILE (≤900px) · SMALL (≤480px)
+       ════════════════════════════════════════ */
+
+    /* ── Hamburger + Mobile Menu (always present, hidden on desktop) ── */
+    .navbar__hamburger {
+      display: none;
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 10;
+    }
+    .navbar__hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .navbar__hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .navbar__hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .navbar__hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .navbar__mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #0a1f26;
+      z-index: 200;
+      flex-direction: column;
+      padding: 0 28px 40px;
+      gap: 0;
+      overflow-y: auto;
+    }
+    .navbar__mobile-menu.is-open { display: flex; }
+
+    .navbar__mobile-close {
+      align-self: flex-end;
+      margin-top: 28px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .navbar__mobile-close svg { width: 16px; height: 16px; }
+
+    .navbar__mobile-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      margin-top: 36px;
+      flex: 1;
+    }
+    .navbar__mobile-links li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .navbar__mobile-links a {
+      font-family: 'Marcellus', serif;
+      font-size: 22px;
+      color: #fff;
+      text-decoration: none;
+      padding: 20px 0;
+      display: block;
+    }
+
+    .navbar__mobile-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .navbar__mobile-ghost {
+      width: 100%; justify-content: center;
+      border: 1.5px solid rgba(255,255,255,0.3) !important;
+      background: transparent !important;
+      color: #fff !important;
+      font-size: 15px !important;
+      padding: 14px 0 !important;
+      border-radius: 13px !important;
+      box-shadow: none !important;
+    }
+    .navbar__mobile-cta {
+      width: 100%; justify-content: center;
+      font-size: 15px !important;
+      padding: 14px 0 !important;
+      border-radius: 13px !important;
+    }
+
+    /* HIW mobile CTA — hidden on desktop */
+    .hiw__mobile-cta { display: none; }
+
+    /* ── TABLET — unlock fixed widths only ── */
+    @media (max-width: 1100px) {
+      .hero, .trusted, .platform-overview, .comparison, .how-it-works,
+      .creators, .results, .platform, .testimonials, .for-creators,
+      .pricing, .faqs, .footer { width: 100% !important; max-width: 100% !important; }
+      .faqs { padding: 80px 48px !important; }
+      .nav-sticky { width: 100%; }
+      .navbar { width: calc(100% - 40px); }
+
+      /* Hard clamp — nothing wider than viewport */
+      * { max-width: 100vw; }
+      /* Re-allow intentional wide elements */
+      img, video, svg { max-width: 100%; }
+      .hero__cloud-track { max-width: none; overflow: hidden; }
+      .navbar__mobile-menu { max-width: 100vw; }
+    }
+
+    /* ── MOBILE + TABLET (≤900px) ── */
+    @media (max-width: 900px) {
+
+      /* ── Uniform section headers ── */
+      .creators__label, .results__label, .platform__label,
+      .testimonials__label, .pricing__label, .comparison__label,
+      .hiw__label, .fc__label {
+        font-size: 11px; letter-spacing: 2px;
+      }
+      .creators__title, .results__title, .platform__title,
+      .testimonials__title, .pricing__title, .comparison__title,
+      .hiw__title {
+        font-size: 28px; line-height: 34px;
+      }
+      .creators__sub, .results__sub, .platform__sub,
+      .testimonials__sub, .pricing__sub, .comparison__sub,
+      .hiw__sub {
+        font-size: 14px; line-height: 22px;
+      }
+
+      /* ── Navbar ── */
+      .navbar { width: calc(100% - 28px); height: 60px; border-radius: 16px; }
+      .navbar__links { display: none; }
+      .navbar__divider { display: none; }
+      .navbar__actions { display: none; }
+      .navbar__logo { height: 26px; width: auto; }
+      .navbar__hamburger { display: flex; }
+
+      /* ── Hero ── */
+      .hero {
+        height: auto; min-height: 0; padding-bottom: 0;
+        display: flex; flex-direction: column; align-items: center;
+        overflow: hidden;
+      }
+      .hero__content {
+        position: relative; left: auto; top: auto; transform: none;
+        width: 88%; max-width: 440px;
+        padding-top: 90px; margin: 0 auto; text-align: center;
+      }
+      .hero__heading { font-size: 34px; line-height: 39px; }
+      .hero__sub { width: 100%; font-size: 15px; line-height: 24px; }
+      .hero__buttons { flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+      .hero__photo-left, .hero__photo-right { display: none; }
+      .hero__phones {
+        position: relative; top: auto; left: auto;
+        width: 85%; max-width: 380px; height: auto;
+        margin: 28px auto 0;
+        display: block; flex-shrink: 0;
+      }
+      .hero__skyline { display: none; }
+      .hero__cloud-track { opacity: 0.07; }
+      /* Restore white fade */
+      .hero__fade {
+        display: block;
+        position: relative;
+        width: 100%; height: 80px;
+        background: linear-gradient(to bottom, transparent 0%, #fff 100%);
+        margin-top: -80px;
+        flex-shrink: 0;
+        pointer-events: none;
+      }
+
+      /* ── Trusted By ── */
+      .trusted { padding: 32px 20px; }
+      .trusted__logos { flex-wrap: wrap; gap: 10px; justify-content: center; }
+      .trusted__card { width: 130px; height: 52px; border-radius: 10px; }
+
+      /* ── Platform Overview ── */
+      .platform-overview { padding: 44px 24px 56px; }
+      .pov__video-wrap { width: 100%; height: auto; }
+      .pov__video { width: 100%; height: 210px; }
+      .pov__video-fade { left: -24px; right: -24px; }
+      .pov__subtitle { width: 100%; font-size: 20px; line-height: 28px; }
+      .pov__features { grid-template-columns: 1fr 1fr; gap: 20px 16px; width: 100%; }
+      .pov__cta { text-align: center; }
+
+      /* ── Comparison ── */
+      .comparison { height: auto; min-height: 0; overflow: visible; opacity: 1; }
+      .comparison__bg { display: none; }
+      .comparison__header {
+        position: relative; left: auto; top: auto;
+        width: 88%; max-width: 440px;
+        margin: 0 auto; padding-top: 48px; text-align: center;
+      }
+      .comparison__cards {
+        position: relative; top: auto; left: auto; transform: none;
+        flex-direction: column; align-items: center;
+        padding: 24px 20px 48px; gap: 18px;
+      }
+      .comparison__card-outer { margin-right: 0; width: 100%; max-width: 320px; height: auto; }
+      .comparison__card--light-rot, .comparison__card--dark-rot { transform: none; }
+      .comparison__card { width: 100%; height: auto; min-height: 0; border-radius: 30px; }
+      .comparison__card-content {
+        position: relative; left: auto; top: auto;
+        width: 100%; padding: 28px 24px 32px;
+        display: flex; flex-direction: column; align-items: center; gap: 14px;
+      }
+
+      /* ── How It Works ── */
+      .how-it-works { padding-top: 48px; }
+      .hiw__bg-sticky { display: none; }
+      .hiw__bg-ellipse { display: none; }
+      .hiw__inner { flex-direction: column; padding-top: 36px; padding-bottom: 56px; align-items: center; gap: 0; }
+      .hiw__left {
+        width: 88%; max-width: 440px; padding-left: 0;
+        position: relative; top: auto;
+        display: flex; justify-content: center; align-self: auto;
+      }
+      .hiw__left-content { align-items: center; text-align: center; }
+      .hiw__left-body { align-items: center; gap: 14px; }
+      /* Hide the desktop Get Started button — replaced by mobile CTA */
+      .hiw__left-body .btn--gold { display: none; }
+      .hiw__right { width: 88%; max-width: 420px; padding-top: 36px; display: flex; flex-direction: column; align-items: center; }
+      .hiw__step { padding-bottom: 36px; width: 100%; }
+      .hiw__step-header { width: 100%; }
+      .hiw__card { width: 100%; max-width: 360px; height: 220px; }
+      /* Show mobile CTA */
+      .hiw__mobile-cta { display: flex; justify-content: center; margin-top: 8px; }
+
+      /* ── Featured Creators ── */
+      .creators__bg-ellipse { display: none; }
+      .creators__header { padding: 40px 24px 0; }
+      .creators__sub { padding: 0 4px; }
+      .creators__cards {
+        padding: 20px 20px 16px;
+        gap: 10px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scroll-padding-left: 20px;
+      }
+      .creators__cards::-webkit-scrollbar { display: none; }
+      .fc2-card--side { opacity: 0.65; scroll-snap-align: center; flex-shrink: 0; }
+      .fc2-card--center { scroll-snap-align: center; flex-shrink: 0; }
+      .creators__dots { margin-top: 18px; }
+      .creators__cta { margin-top: 24px; }
+
+      /* ── Proven Results ── */
+      .results { padding: 48px 0 56px; }
+      .results__header { width: 88%; max-width: 440px; }
+      .cs-card {
+        width: 90%; max-width: 480px;
+        flex-direction: column; align-items: stretch;
+        padding: 14px; border-radius: 26px; gap: 18px;
+      }
+      .cs-left { width: 100%; height: 220px; border-radius: 16px; position: relative; flex-shrink: 0; }
+      .cs-hotel-img { position: absolute; }
+      .cs-gradient { width: 100%; left: 0; }
+      .cs-right { width: 100%; padding: 4px 0; }
+      .cs-logo-card { width: 110px; height: 46px; }
+      .cs-stats { flex-wrap: wrap; gap: 12px; }
+      .cs-cta-row { flex-wrap: wrap; gap: 12px; }
+      .cs-section-title { font-size: 20px; line-height: 27px; }
+      .cs-section-text { font-size: 14px; line-height: 22px; }
+
+      /* ── Complete Platform ── */
+      .platform { padding: 48px 24px 56px; }
+      .platform__header { width: 88%; max-width: 440px; }
+      .platform__grid { width: 100%; margin-top: 28px; gap: 14px; }
+      /* Two-column grid, taller cards so text + image both visible */
+      .pf-card { width: calc(50% - 7px); height: 300px; }
+      .pf-card__img { height: 160px; left: 20px; width: calc(100% - 40px); }
+
+      /* ── Testimonials ── */
+      .testimonials { height: auto; min-height: 0; padding: 48px 24px 56px; overflow: visible; }
+      .testimonials__map { display: none; }
+      .testimonials__left {
+        position: relative; left: auto; top: auto;
+        width: 100%; max-width: 460px;
+        margin: 0 auto; padding: 0;
+        display: flex; flex-direction: column; gap: 10px;
+      }
+      .testimonials__title { width: 100%; }
+      .tc-card {
+        position: relative; left: auto; top: auto;
+        width: 100%; max-width: 460px;
+        margin: 70px auto 0;
+        padding: 40px 26px 30px;
+        gap: 22px;
+      }
+      .tc-avatar { right: 18px; top: -56px; width: 90px; height: 92px; }
+      .tc-name { font-size: 20px; }
+      .tc-quote { width: 100%; font-size: 16px; line-height: 26px; }
+
+      /* ── For Creators ── */
+      .for-creators {
+        position: static !important;
+        height: auto !important;
+        overflow: visible !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 48px;
+        padding-bottom: 56px;
+      }
+      .fc__phone {
+        position: static !important;
+        left: auto; top: auto;
+        width: 55%; max-width: 220px;
+        height: auto !important;
+        object-fit: contain !important;
+        display: block; margin: 0 auto 28px;
+      }
+      .fc__content {
+        position: static !important;
+        left: auto; top: auto; width: 88%;
+        max-width: 440px; margin: 0 auto; padding: 32px 0 0;
+      }
+      .fc__title { font-size: 28px; line-height: 34px; width: 100%; }
+      .fc__body { width: 100%; font-size: 15px; line-height: 24px; }
+      .fc__benefits { width: 100%; }
+      .fc__benefit-text { font-size: 15px; white-space: normal; line-height: 22px; }
+      .fc__btn { width: 100%; justify-content: center; height: 52px; font-size: 15px; }
+
+      /* ── Pricing ── */
+      .pricing { padding: 56px 24px 56px; }
+      .pricing__header { margin-bottom: 40px; gap: 10px; }
+      .pricing__title { font-size: 28px; line-height: 34px; }
+      .pricing__sub { font-size: 14px; }
+      .pricing__cards { flex-direction: column; align-items: stretch; gap: 16px; padding: 0 0; }
+      .pr-card { width: 100%; max-width: none; border-radius: 20px; padding: 28px 24px 32px; }
+      .pr-card__name { font-size: 24px; }
+      .pr-card__currency, .pr-card__amount { font-size: 46px; }
+      .pr-card__features { gap: 16px; }
+
+      /* ── FAQs ── */
+      .faqs { padding: 56px 24px 60px !important; width: 100% !important; }
+      .faqs__header { margin-bottom: 36px; align-items: center; width: 100%; }
+      .faqs__list { width: 100%; }
+      .faq-item { width: 100%; }
+      .faqs__desktop-header { display: none; }
+      .faqs__mobile-header {
+        display: flex !important; flex-direction: column;
+        align-items: center; text-align: center; gap: 21px;
+      }
+      .faqs__mobile-label {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700; font-size: 11px;
+        letter-spacing: 2px; text-transform: uppercase;
+        color: #102e37; line-height: 14px;
+      }
+      .faqs__mobile-title {
+        font-family: 'Marcellus', serif;
+        font-size: 28px; line-height: 34px;
+        color: #102e37; letter-spacing: -1px;
+      }
+      .faqs__mobile-title { margin-bottom: 10px; }
+      .faqs__mobile-sub {
+        font-family: 'Lato', sans-serif;
+        font-size: 14px; line-height: 22px;
+        color: #696a72; letter-spacing: -0.2px;
+      }
+      .faq-item__q { font-size: 13px; letter-spacing: 0.3px; line-height: 20px; }
+      .faq-item__answer { font-size: 14px; line-height: 24px; }
+      .faq-item__header { padding: 18px 0; }
+
+      /* ── Footer ── */
+      /* desktop footer elements hidden — mobile footer used instead */
+    }
+
+    /* ── SMALL MOBILE (≤480px) ── */
+    @media (max-width: 480px) {
+      /* Hero */
+      .hero__heading { font-size: 28px; line-height: 34px; }
+      .hero__sub { font-size: 14px; }
+      .hero__buttons .btn { padding: 12px 20px; font-size: 14px; }
+      .hero__phones { width: 92%; margin-top: 24px; }
+
+      /* Trusted */
+      .trusted__card { width: 112px; height: 46px; }
+      .trusted { padding: 28px 16px; }
+
+      /* Platform overview */
+      .pov__subtitle { font-size: 18px; line-height: 26px; }
+      .pov__features { grid-template-columns: 1fr; gap: 18px; }
+      .pov__feature-desc { font-size: 14px; }
+
+      /* Comparison */
+      .comparison__badge { padding: 12px 18px; font-size: 11px; letter-spacing: 1.4px; }
+      .comparison__item { font-size: 13px; letter-spacing: 0.8px; line-height: 18px; }
+
+      /* Creators carousel */
+      .creators__cards { gap: 8px; padding: 16px 16px 14px; scroll-padding-left: 16px; }
+      .fc2-card--side { width: 148px; height: 268px; }
+      .fc2-card--center { width: 182px; height: 330px; }
+
+      /* Results */
+      .cs-card { width: 94%; padding: 12px; border-radius: 20px; }
+      .cs-left { height: 190px; }
+
+      /* Platform grid — single column */
+      .pf-card { width: 100%; height: 280px; }
+      .pf-card__img { left: 16px; width: calc(100% - 32px); height: 150px; }
+
+      /* Testimonials */
+      .tc-card { padding: 36px 18px 24px; margin-top: 56px; }
+      .tc-avatar { width: 76px; height: 78px; top: -38px; right: 12px; }
+      .tc-name { font-size: 18px; }
+      .tc-quote { font-size: 15px; line-height: 24px; }
+
+      /* For Creators */
+      .fc__title { font-size: 24px; line-height: 30px; }
+      .fc__body { font-size: 14px; }
+      .fc__phone { width: 48%; max-width: 190px; margin-bottom: 24px; }
+      .fc__content { padding: 0 20px 48px; }
+      .fc__btn { height: 50px; font-size: 15px; }
+
+      /* Pricing */
+      .pr-card { padding: 24px 20px 28px; }
+      .pr-card__currency, .pr-card__amount { font-size: 42px; }
+      .pr-card__name { font-size: 22px; }
+      .pr-card__features { gap: 14px; }
+      .pr-card__feature span { font-size: 14px; }
+
+      /* FAQs */
+      .faqs { padding: 48px 20px 52px !important; }
+      .faqs__mobile-title { font-size: 24px; line-height: 30px; }
+      .faq-item__q { font-size: 12px; }
+      .faq-item__answer { font-size: 13px; }
+
+      /* Footer handled by mobile footer styles */
+    }
+
+    /* ── FOR CREATORS ── */
+    .for-creators {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, #102e37 0%, #2e839d 100%);
+      overflow: hidden;
+      height: 650px;
+    }
+    /* left column: absolute positioned per Figma */
+    .fc__content {
+      position: absolute;
+      left: 162px;
+      top: 99px;
+      width: 536px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px; /* gap between text+benefits block and button */
+    }
+    /* top block: label + title + body + benefits, gap 24px */
+    .fc__top {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    /* label + title + body inner block, gap 16px */
+    .fc__text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .fc__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2.003px;
+      line-height: 14.021px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .fc__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 48.8px;
+      color: #fff;
+      width: 406px;
+    }
+    .fc__body {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      color: #fff;
+      line-height: 28px;
+      width: 358px;
+    }
+    /* benefits list: gap 20px, width 327px */
+    .fc__benefits {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 327px;
+    }
+    .fc__benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .fc__tick {
+      width: 26px;
+      height: 26px;
+      border-radius: 100px;
+      background: #d9a441;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .fc__tick img { width: 20px; height: 20px; }
+    .fc__benefit-text {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      letter-spacing: -0.2px;
+      color: #fff;
+      line-height: 28px;
+      white-space: nowrap;
+    }
+    /* CTA button — fixed 180px width */
+    .fc__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 180px;
+      height: 48px;
+      border-radius: 13.944px;
+      border: 1.162px solid rgba(215,165,67,0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255,255,255,0.4);
+      background: linear-gradient(5.239deg, #d7a543 13.297%, #efc470 89.683%);
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 23.239px;
+      text-shadow: 0 0 0.581px white;
+      color: #fff;
+      text-decoration: none;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    /* phone mockup image — exact Figma coordinates */
+    .fc__phone {
+      position: absolute;
+      left: 788px;
+      top: 55px;
+      width: 429px;
+      height: 529px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* ── PRICING ── */
+    .pricing {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      background: rgba(212,175,55,0.06);
+      padding: 90px 0 100px;
+    }
+    .pricing__header {
+      text-align: center;
+      margin-bottom: 55px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .pricing__label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #102e37;
+    }
+    .pricing__title {
+      font-family: 'Marcellus', serif;
+      font-size: 48px;
+      letter-spacing: -1.5px;
+      line-height: 52px;
+      color: #102e37;
+    }
+    .pricing__sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #696a72;
+      line-height: 28px;
+    }
+    .pricing__cards {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .pr-card {
+      width: 314px;
+      border-radius: 15px;
+      padding: 32px 27px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .pr-card--light {
+      background: #fff;
+      box-shadow: 0px 4px 14px 0px rgba(28,66,161,0.04);
+    }
+    .pr-card--dark {
+      background: #102e37;
+    }
+    .pr-card--dark::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://www.figma.com/api/mcp/asset/7a1a6675-49d3-4645-84f9-a52196e358a7') center/cover no-repeat;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .pr-card > * { position: relative; z-index: 1; }
+    .pr-card__name {
+      font-family: 'Marcellus', serif;
+      font-size: 30px;
+      color: #162b60;
+      margin-bottom: 4px;
+    }
+    .pr-card--dark .pr-card__name { color: #fff; }
+    .pr-card__starting {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      color: #8690ab;
+      margin-bottom: 14px;
+    }
+    .pr-card--dark .pr-card__starting { color: rgba(255,255,255,0.55); }
+    .pr-card__price-row {
+      display: flex;
+      align-items: flex-end;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pr-card__currency {
+      font-family: 'Marcellus', serif;
+      font-size: 55px;
+      color: #162b60;
+      line-height: 1;
+    }
+    .pr-card--dark .pr-card__currency { color: #fff; }
+    .pr-card__amount {
+      font-family: 'Marcellus SC', serif;
+      font-size: 55px;
+      color: #162b60;
+      line-height: 1;
+    }
+    .pr-card--dark .pr-card__amount { color: #fff; }
+    .pr-card__period {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #162b60;
+      padding-bottom: 6px;
+      margin-left: 4px;
+    }
+    .pr-card--dark .pr-card__period { color: rgba(255,255,255,0.65); }
+    .pr-card__billing {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      color: #162b60;
+      margin-bottom: 22px;
+    }
+    .pr-card--dark .pr-card__billing { color: #fff; }
+    .pr-card__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 46px;
+      border-radius: 13.944px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      text-shadow: 0 0 0.581px white;
+      margin-bottom: 28px;
+    }
+    .pr-card__btn--teal {
+      background: linear-gradient(3.573deg, #1a98a6 13.297%, #18c6d9 89.683%);
+      border: 1.162px solid rgba(26,152,166,0.63);
+      box-shadow: 0px 1.162px 2.324px 0px #1a98a6, 0px 0px 0px 2.324px rgba(26,152,166,0.36);
+    }
+    .pr-card__btn--gold {
+      background: linear-gradient(3.573deg, #d7a543 13.297%, #efc470 89.683%);
+      border: 1.162px solid rgba(215,165,67,0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255,255,255,0.4);
+    }
+    .pr-card__features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    .pr-card__feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .pr-card__feature img { width: 20px; height: 20px; flex-shrink: 0; }
+    .pr-card__feature span {
+      font-family: 'Lato', sans-serif;
+      font-size: 17px;
+      color: #162b60;
+    }
+    .pr-card--dark .pr-card__feature span { color: #fff; }
+
+    /* ── FAQs ── */
+    .faqs {
+      width: 1440px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 100px 161px 100px;
+    }
+    .faqs__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 60px;
+    }
+    /* Row 1: "COMMON" + small label */
+    .faqs__row1 {
+      display: flex;
+      align-items: flex-end;
+      gap: 24.672px;
+    }
+    .faqs__big {
+      font-family: 'Marcellus', serif;
+      font-size: 121px;
+      line-height: 104.914px;
+      color: #102e37;
+      text-transform: uppercase;
+      letter-spacing: -3px;
+    }
+    .faqs__side {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-bottom: 18px;
+    }
+    .faqs__side span {
+      font-family: 'Lato', sans-serif;
+      font-weight: 500;
+      font-size: 13.4px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #102e37;
+      line-height: 14.4px;
+    }
+    .faqs__mobile-header { display: none; }
+    .faqs__list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-top: 1px solid #e5e5e5;
+      cursor: pointer;
+    }
+    .faq-item:last-child { border-bottom: 1px solid #e5e5e5; }
+    .faq-item__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0;
+    }
+    .faq-item__q {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      letter-spacing: 0.4px;
+      color: #102e37;
+      text-transform: uppercase;
+    }
+    .faq-item__icon {
+      font-size: 22px;
+      color: #102e37;
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .faq-item.is-open .faq-item__icon { transform: rotate(45deg); }
+    .faq-item__answer {
+      display: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #696a72;
+      line-height: 28px;
+      padding-bottom: 22px;
+    }
+    .faq-item.is-open .faq-item__answer { display: block; }
+
+    /* ── FOOTER ── */
+    .footer__mobile { display: none; } /* hidden on desktop */
+
+    .footer {
+      position: relative;
+      width: 1440px;
+      margin: 0 auto;
+      height: 1035px;
+      overflow: hidden;
+    }
+    /* Full-bleed background photo */
+    .footer__bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    /* Overlay container — matches Figma: left:50%, top:26px, width:1440px, height:1009px, overflow:hidden */
+    .footer__overlay {
+      position: absolute;
+      left: 0;
+      top: 26px;
+      width: 1440px;
+      height: 1009px;
+      overflow: hidden;
+    }
+    /* Newsletter block — left:340px, top:147px, width:761px */
+    .footer__newsletter {
+      position: absolute;
+      left: 340px;
+      top: 147px;
+      width: 761px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 34px;
+      text-align: center;
+    }
+    .footer__nl-text {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 664px;
+    }
+    .footer__nl-stay {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: #d9a441;
+      line-height: 20px;
+    }
+    .footer__nl-titles {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .footer__nl-title {
+      font-family: 'Marcellus', serif;
+      font-size: 52px;
+      color: #102e37;
+      line-height: 62px;
+    }
+    .footer__nl-sub {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: #102e37;
+      line-height: 28px;
+    }
+    /* Form: input takes left portion, button absolute at right */
+    .footer__nl-form {
+      position: relative;
+      height: 52px;
+      width: 100%;
+    }
+    .footer__nl-input {
+      position: absolute;
+      left: 0;
+      right: 172px;
+      height: 52px;
+      border: 1px solid rgba(255,255,255,0.5);
+      border-radius: 14px;
+      padding: 0 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: rgba(16,46,55,0.6);
+      outline: none;
+      background: #fff;
+    }
+    .footer__nl-btn {
+      position: absolute;
+      left: 601px;
+      top: 0;
+      width: 160px;
+      height: 52px;
+      background: linear-gradient(6.193deg, #d7a543 13.297%, #efc470 89.683%);
+      border: 1.162px solid rgba(215,165,67,0.57);
+      box-shadow: 0px 1.162px 2.324px 0px #d7a543, 0px 0px 0px 2.324px rgba(255,255,255,0.4);
+      border-radius: 13.944px;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #fff;
+      text-shadow: 0 0 0.581px white;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    /* Bottom section: left:45px, top:450px, width:1349px, pb:56px */
+    .footer__bottom-wrap {
+      position: absolute;
+      left: 45px;
+      top: 450px;
+      width: 1349px;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 56px;
+    }
+    /* White card: 341px tall, border-radius 42px, mb:-56px so watermark overlaps up into it */
+    .footer__card {
+      background: #fff;
+      border-radius: 42px;
+      height: 341px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      margin-bottom: -56px;
+    }
+    /* Card inner content */
+    .footer__card-inner {
+      position: absolute;
+      left: 50px;
+      top: 31px;
+      right: 50px;
+      display: flex;
+      gap: 47px;
+      align-items: flex-start;
+    }
+    /* Brand column: 360px */
+    .footer__brand {
+      width: 360px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .footer__logo img { height: 35px; width: auto; }
+    .footer__brand-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 33px;
+    }
+    .footer__tagline {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(16,46,55,0.5);
+      line-height: 26px;
+    }
+    .footer__socials { display: flex; gap: 12px; align-items: center; }
+    .footer__social {
+      width: 37px; height: 37px;
+      border-radius: 18.5px;
+      border: 1px solid #102e37;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .footer__social img { display: block; }
+    .footer__social img.ig  { width: 15px; height: 16px; } /* Instagram */
+    .footer__social img.li  { width: 15px; height: 16px; } /* LinkedIn */
+    .footer__social img.tt  { width: 15px; height: 18px; } /* TikTok */
+    .footer__social img.yt  { width: 19px; height: 13px; } /* YouTube */
+    /* Nav columns */
+    .footer__nav {
+      display: flex;
+      gap: 32px;
+      flex: 1;
+    }
+    .footer__nav-col { width: 197px; flex-shrink: 0; }
+    .footer__nav-col h4 {
+      font-family: 'Marcellus SC', serif;
+      font-size: 26px;
+      color: #102e37;
+      line-height: 36px;
+      margin-bottom: 30px;
+    }
+    .footer__nav-col ul { list-style: none; }
+    .footer__nav-col a {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: rgba(16,46,55,0.5);
+      text-decoration: none;
+      line-height: 32px;
+      display: block;
+    }
+    .footer__nav-col a:hover { color: #102e37; }
+    /* Divider + bottom bar — at top:267px inside card */
+    .footer__card-footer {
+      position: absolute;
+      left: 25px;
+      right: 24px;
+      top: 267px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .footer__divider {
+      height: 1px;
+      background: rgba(16,46,55,0.3);
+    }
+    .footer__bottom-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer__copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #102e37;
+      line-height: 32px;
+    }
+    .footer__legal { display: flex; gap: 24px; }
+    .footer__legal a {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      color: #102e37;
+      text-decoration: none;
+      line-height: 32px;
+    }
+    /* UKREATE watermark: 1349px wide, 276.5px tall, sits below white card */
+    .footer__watermark {
+      display: block;
+      width: 1349px;
+      height: 276.5px;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
+
+    /* ── MOBILE FOOTER ── shown only at ≤900px ── */
+    @media (max-width: 900px) {
+      /* Hide desktop footer, show mobile footer */
+      .footer__overlay { display: none !important; }
+      .footer__bg { display: none !important; }
+      .footer { height: auto !important; overflow: visible !important; background: #102e37; width: 100% !important; }
+      .footer__mobile { display: block; }
+
+      /* Container */
+      .fmob__newsletter {
+        padding: 48px 24px 40px;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        text-align: center;
+      }
+      .fmob__stay {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.6);
+        margin-bottom: 14px;
+      }
+      .fmob__title {
+        font-family: 'Marcellus', serif;
+        font-size: 28px;
+        line-height: 34px;
+        color: #fff;
+        letter-spacing: -0.5px;
+        margin-bottom: 10px;
+      }
+      .fmob__sub {
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        line-height: 22px;
+        color: rgba(255,255,255,0.65);
+        margin-bottom: 24px;
+      }
+      .fmob__form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .fmob__input {
+        width: 100%;
+        height: 52px;
+        border-radius: 13px;
+        border: 1px solid rgba(255,255,255,0.25);
+        background: rgba(255,255,255,0.08);
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        padding: 0 18px;
+        outline: none;
+        box-sizing: border-box;
+      }
+      .fmob__input::placeholder { color: rgba(255,255,255,0.4); }
+      .fmob__btn {
+        width: 100%;
+        height: 52px;
+        border-radius: 13px;
+        border: none;
+        background: linear-gradient(5.745deg, #d7a543 13.297%, #efc470 89.683%);
+        color: #fff;
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+      }
+
+      /* Brand */
+      .fmob__brand {
+        padding: 36px 24px 32px;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+        text-align: center;
+      }
+      .fmob__logo {
+        height: 32px;
+        width: auto;
+        display: block;
+        margin: 0 auto 16px;
+        filter: brightness(0) invert(1);
+      }
+      .fmob__tagline {
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+        color: rgba(255,255,255,0.6);
+        max-width: 300px;
+        margin: 0 auto 20px;
+      }
+      .fmob__socials {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+      }
+      .fmob__social {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .fmob__social img { filter: brightness(0) invert(1); }
+      .fmob__social img.ig { width: 15px; height: 16px; }
+      .fmob__social img.li { width: 15px; height: 16px; }
+      .fmob__social img.tt { width: 15px; height: 18px; }
+      .fmob__social img.yt { width: 19px; height: 13px; }
+
+      /* Nav */
+      .fmob__nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px 16px;
+        padding: 36px 24px 36px;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+      }
+      .fmob__col-title {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        color: #fff;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+      }
+      .fmob__col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .fmob__col a {
+        font-family: 'Lato', sans-serif;
+        font-size: 14px;
+        color: rgba(255,255,255,0.65);
+        text-decoration: none;
+        line-height: 1.4;
+      }
+      .fmob__col a:hover { color: #fff; }
+
+      /* Bottom bar */
+      .fmob__bottom {
+        padding: 24px 24px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        text-align: center;
+      }
+      .fmob__copy {
+        font-family: 'Lato', sans-serif;
+        font-size: 13px;
+        color: rgba(255,255,255,0.45);
+      }
+      .fmob__legal {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+      }
+      .fmob__legal a {
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        color: rgba(255,255,255,0.45);
+        text-decoration: none;
+      }
+      .fmob__legal a:hover { color: rgba(255,255,255,0.8); }
+    }
+
+    @media (max-width: 480px) {
+      .fmob__newsletter { padding: 40px 20px 36px; }
+      .fmob__title { font-size: 24px; line-height: 30px; }
+      .fmob__brand { padding: 32px 20px 28px; }
+      .fmob__nav { padding: 32px 20px 32px; gap: 28px 12px; }
+      .fmob__bottom { padding: 20px 20px 36px; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ── Sticky Navbar ── -->
+<div class="nav-sticky">
+  <nav class="navbar">
+    <img class="navbar__logo" src="https://www.figma.com/api/mcp/asset/bdb2a2a4-aa1e-46af-b9f5-b31afef793a6" alt="Ukreate">
+
+    <ul class="navbar__links">
+      <li><a href="#">For Creators</a></li>
+      <li><a href="#">For Hotels</a></li>
+      <li><a href="#">Community &amp; Training</a></li>
+    </ul>
+
+    <div class="navbar__divider"></div>
+
+    <div class="navbar__actions">
+      <a href="#" class="btn btn--ghost">Log In</a>
+      <a href="#" class="btn btn--gold">Get Started For Free</a>
+    </div>
+
+    <!-- Hamburger — mobile only -->
+    <button class="navbar__hamburger" id="nav-hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</div>
+
+<!-- Mobile menu -->
+<div class="navbar__mobile-menu" id="nav-mobile-menu">
+  <button class="navbar__mobile-close" id="nav-mobile-close" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <ul class="navbar__mobile-links">
+    <li><a href="#">For Creators</a></li>
+    <li><a href="#">For Hotels</a></li>
+    <li><a href="#">Community &amp; Training</a></li>
+    <li><a href="#">Pricing</a></li>
+  </ul>
+  <div class="navbar__mobile-actions">
+    <a href="#" class="btn btn--ghost navbar__mobile-ghost">Log In</a>
+    <a href="#" class="btn btn--gold navbar__mobile-cta">Get Started Free</a>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<header class="hero">
+
+  <!-- Backgrounds -->
+  <img class="hero__skyline" src="https://www.figma.com/api/mcp/asset/25344a45-8246-41c0-b2b3-70f4ed8416b3" alt="">
+  <div class="hero__cloud-track">
+    <img src="https://www.figma.com/api/mcp/asset/7c1203be-0361-426a-849d-cc82c02ea77b" alt="">
+    <img src="https://www.figma.com/api/mcp/asset/7c1203be-0361-426a-849d-cc82c02ea77b" alt="">
+  </div>
+
+  <!-- Floating creator photos -->
+  <img class="hero__photo-left"  src="https://www.figma.com/api/mcp/asset/a70d9226-d63c-4844-8301-710d000a8c09" alt="Creator">
+  <img class="hero__photo-right" src="https://www.figma.com/api/mcp/asset/ed560097-985f-424a-9356-4fe15d661d32" alt="Creator">
+
+  <!-- Hero copy -->
+  <div class="hero__content">
+    <span class="hero__badge">Premium Travel Creator Marketplace</span>
+
+    <div class="hero__text">
+      <h1 class="hero__heading">
+        Find Elite Creators.<br>
+        Get Content That Sells.
+      </h1>
+      <p class="hero__sub">
+        500+ hotels use Ukreate to source professional UGC, native posts, and booking-driven campaigns—without the back-and-forth
+      </p>
+    </div>
+
+    <div class="hero__buttons">
+      <a href="#" class="btn btn--gold">Browse Creators</a>
+      <a href="#" class="btn btn--white">Book A Demo</a>
+    </div>
+  </div>
+
+  <!-- Phones + plane composite -->
+  <img class="hero__phones" src="https://www.figma.com/api/mcp/asset/e8223133-fe00-4b89-8801-de0356335337" alt="">
+
+  <!-- Bottom fade to white -->
+  <div class="hero__fade"></div>
+
+</header>
+
+<!-- ── TRUSTED BY ── -->
+<section class="trusted">
+  <p class="trusted__label">Trusted by marketing teams at:</p>
+  <div class="trusted__logos">
+
+    <div class="trusted__card">
+      <img src="https://www.figma.com/api/mcp/asset/550ed7e7-9d13-4c0a-b531-702daccc270c" alt="Aman Resorts">
+    </div>
+
+    <div class="trusted__card">
+      <img src="https://www.figma.com/api/mcp/asset/112fb671-b0cb-44a9-b43f-b2cdf6f24ec4" alt="Hyatt Regency">
+    </div>
+
+    <div class="trusted__card">
+      <img src="https://www.figma.com/api/mcp/asset/8c5ed993-2564-4ef7-bf14-429ae1367ce2" alt="Small Luxury Hotels">
+    </div>
+
+    <div class="trusted__card">
+      <img src="https://www.figma.com/api/mcp/asset/f3d7a04e-92ac-48d6-b34f-62eb519b38b9" alt="Marriott International">
+    </div>
+
+    <div class="trusted__card">
+      <img src="https://www.figma.com/api/mcp/asset/2e593547-cb6d-4ac1-8259-accdcc04833c" alt="Four Seasons">
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PLATFORM OVERVIEW ── -->
+<section class="platform-overview">
+
+  <!-- Video player -->
+  <div class="pov__video-wrap" id="pov-video-box">
+    <div class="pov__video">
+      <video id="pov-vid" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" preload="metadata" playsinline></video>
+    </div>
+    <button class="pov__play-btn" id="pov-play-btn" aria-label="Play video">
+      <svg viewBox="0 0 24 24" fill="#102e37"><polygon points="5,3 19,12 5,21"/></svg>
+    </button>
+    <div class="pov__video-fade" id="pov-fade"></div>
+  </div>
+
+  <!-- Subtitle -->
+  <p class="pov__subtitle">Browse creators, manage bookings, track deliverables, and measure performance all in one place.</p>
+
+  <!-- Features grid -->
+  <div class="pov__features">
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/2c6dc88a-721e-4d98-9fb9-26cfc36c65da" alt="">Smart Search</div>
+      <p class="pov__feature-desc">Filter creators by niche, location, audience size, and content style.</p>
+    </div>
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/aeb8242d-a0cb-496c-a613-d667e3393c8c" alt="">Booking Management</div>
+      <p class="pov__feature-desc">Track project status, deadlines, and deliverables in real time.</p>
+    </div>
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/4c9a5073-ba8b-4a65-b373-f165c61383e7" alt="">Performance Analytics</div>
+      <p class="pov__feature-desc">See reach, engagement, and clicks—all attributed to each campaign.</p>
+    </div>
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/9187a3d8-bd67-4624-a495-a650c8f0243b" alt="">Verified Profiles</div>
+      <p class="pov__feature-desc">Every creator is audience-verified before you see them.</p>
+    </div>
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/b1914529-cc11-47fe-bc57-94a5b16cb8cd" alt="">Asset Library</div>
+      <p class="pov__feature-desc">All delivered content stored and organized for easy access.</p>
+    </div>
+    <div class="pov__feature">
+      <div class="pov__feature-name"><img src="https://www.figma.com/api/mcp/asset/86e4bdef-9c9b-4733-9b05-44da10236bfd" alt="">Built-In Contracts</div>
+      <p class="pov__feature-desc">Legal protection included with every booking.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="pov__cta">
+    <a href="#" class="btn btn--gold" style="background:linear-gradient(5.745deg,#d7a543 13.297%,#efc470 89.683%);border:1.162px solid rgba(215,165,67,0.57);box-shadow:0px 1.162px 2.324px 0px #d7a543,0px 0px 0px 2.324px rgba(255,255,255,0.4);padding:12.782px 23.239px;border-radius:13.944px;font-size:16px;line-height:23.239px;text-shadow:0 0 0.581px white;color:#fff;text-decoration:none;display:inline-block;">Get Started Now</a>
+  </div>
+
+</section>
+
+<!-- ── COMPARISON ── -->
+<section class="comparison">
+
+  <!-- Background image -->
+  <div class="comparison__bg">
+    <img src="https://www.figma.com/api/mcp/asset/48bfeaf7-fd8d-41b9-b4c0-d77022379753" alt="">
+  </div>
+
+  <!-- Header -->
+  <div class="comparison__header">
+    <p class="comparison__label">The Old Way vs. The Ukreate Way</p>
+    <h2 class="comparison__title">Creator Marketing Shouldn't Be This Hard</h2>
+    <p class="comparison__sub">We built the platform we wish existed. Streamlined, verified and stress free</p>
+  </div>
+
+  <!-- Cards -->
+  <div class="comparison__cards">
+
+    <!-- Without Ukreate -->
+    <div class="comparison__card-outer comparison__card--light-rot">
+      <div class="comparison__card comparison__card--light">
+        <div class="comparison__card-content">
+          <div class="comparison__badge">Without UKREATE</div>
+          <p class="comparison__item">Hours searching Instagram for creators</p>
+          <p class="comparison__item">Awkward DM negotiations</p>
+          <p class="comparison__item">No idea if followers are real</p>
+          <p class="comparison__item">Chasing creators for deliverables</p>
+          <p class="comparison__item">No legal protection</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Ukreate Way -->
+    <div class="comparison__card-outer comparison__card--dark-rot">
+      <div class="comparison__card comparison__card--dark">
+        <div class="comparison__card-content">
+          <div class="comparison__badge">The UKREATE WAY</div>
+          <p class="comparison__item">Browse pre-vetted creators in minutes</p>
+          <p class="comparison__item">Transparent pricing &amp; one-click booking</p>
+          <p class="comparison__item">Verified engagement &amp; audience data</p>
+          <p class="comparison__item">Managed workflow with deadlines</p>
+          <p class="comparison__item">Contracts &amp; insurance included</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-it-works">
+
+  <!-- Background ellipse gradient — sticky so it stays put while scrolling through steps -->
+  <div class="hiw__bg-sticky">
+    <div class="hiw__bg-ellipse">
+      <img src="https://www.figma.com/api/mcp/asset/248c9e9e-c2a2-48c0-b7e1-15d370a76780" alt="">
+    </div>
+  </div>
+
+  <div class="hiw__inner">
+
+    <!-- Left sticky panel -->
+    <div class="hiw__left">
+      <div class="hiw__left-content">
+        <p class="hiw__label">How It Works</p>
+        <div class="hiw__left-body">
+          <h2 class="hiw__title">From Brief To Booking In 3 Steps</h2>
+          <p class="hiw__sub">From Search To Deliverables In Days, Not Weeks</p>
+          <a href="#" class="btn btn--gold">Get Started Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right scrolling steps -->
+    <div class="hiw__right">
+
+      <!-- Step 1 -->
+      <div class="hiw__step" id="hiw-step-1">
+        <div class="hiw__step-header">
+          <div class="hiw__step-badge">1</div>
+          <h3 class="hiw__step-title">Search &amp; Filter</h3>
+          <p class="hiw__step-desc">Browse 500+ vetted creators by niche, location, audience, and content style</p>
+        </div>
+        <div class="hiw__card hiw__card--teal">
+          <img class="hiw__card-img" src="https://www.figma.com/api/mcp/asset/a115178c-48ec-43be-a87d-652e62dbdcc6" alt="">
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="hiw__step hiw__step--hidden" id="hiw-step-2">
+        <div class="hiw__step-header">
+          <div class="hiw__step-badge">2</div>
+          <h3 class="hiw__step-title">Book Your Package</h3>
+          <p class="hiw__step-desc">Choose UGC-only, native posting, or full stay collaborations with clear pricing</p>
+        </div>
+        <div class="hiw__card hiw__card--gold">
+          <img class="hiw__card-img" src="https://www.figma.com/api/mcp/asset/a115178c-48ec-43be-a87d-652e62dbdcc6" alt="">
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="hiw__step hiw__step--hidden" id="hiw-step-3">
+        <div class="hiw__step-header">
+          <div class="hiw__step-badge">3</div>
+          <h3 class="hiw__step-title">Receive &amp; Amplify</h3>
+          <p class="hiw__step-desc">Get professional assets delivered on time. Track reach and engagement in your dashboard</p>
+        </div>
+        <div class="hiw__card hiw__card--blue">
+          <img class="hiw__card-img" src="https://www.figma.com/api/mcp/asset/a115178c-48ec-43be-a87d-652e62dbdcc6" alt="">
+        </div>
+      </div>
+
+      <!-- Mobile-only CTA after last step -->
+      <div class="hiw__mobile-cta">
+        <a href="#" class="btn btn--gold" style="background:linear-gradient(5.745deg,#d7a543 13.297%,#efc470 89.683%);border:1.162px solid rgba(215,165,67,0.57);box-shadow:0px 1.162px 2.324px 0px #d7a543,0px 0px 0px 2.324px rgba(255,255,255,0.4);padding:14px 32px;border-radius:13.944px;font-size:16px;text-shadow:0 0 0.581px white;color:#fff;text-decoration:none;">Get Started Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED CREATORS ── -->
+<section class="creators">
+
+  <!-- Background ellipse -->
+  <div class="creators__bg-ellipse">
+    <img src="https://www.figma.com/api/mcp/asset/e35b1777-c631-466a-8b62-5b9d08ad4fbe" alt="">
+  </div>
+
+  <!-- Header -->
+  <div class="creators__header">
+    <p class="creators__label">Our Elite Network</p>
+    <div>
+      <h2 class="creators__title">Featured Creators</h2>
+      <p class="creators__sub">Handpicked professionals trusted by luxury hotels worldwide</p>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="creators__cards">
+
+    <!-- Card 1 -->
+    <div class="fc2-card fc2-card--side">
+      <video class="fc2-photo" preload="auto" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" autoplay muted loop playsinline></video>
+      <div class="fc2-badge">
+        <img src="https://www.figma.com/api/mcp/asset/c1fdbfdf-faf6-4320-a96c-3dd8e3c30d04" alt="">
+        <span>Verified</span>
+      </div>
+      <div class="fc2-info">
+        <div class="fc2-info-row1">
+          <div class="fc2-avatar"><img src="https://www.figma.com/api/mcp/asset/248462f7-76a1-4a58-bd4c-055611e48d15" alt=""></div>
+          <span class="fc2-handle">@travelwithsarah</span>
+        </div>
+        <span class="fc2-location">Dubai, UAE</span>
+        <div class="fc2-info-row3">
+          <div class="fc2-stars">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+          </div>
+          <div class="fc2-audience"><img src="https://www.figma.com/api/mcp/asset/cd5bb8fa-b7d3-45d0-951a-b76f55168e9f" alt=""><span>25K</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="fc2-card fc2-card--side">
+      <video class="fc2-photo" preload="auto" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" autoplay muted loop playsinline></video>
+      <div class="fc2-badge">
+        <img src="https://www.figma.com/api/mcp/asset/c1fdbfdf-faf6-4320-a96c-3dd8e3c30d04" alt="">
+        <span>Verified</span>
+      </div>
+      <div class="fc2-info">
+        <div class="fc2-info-row1">
+          <div class="fc2-avatar"><img src="https://www.figma.com/api/mcp/asset/248462f7-76a1-4a58-bd4c-055611e48d15" alt=""></div>
+          <span class="fc2-handle">@luxelens</span>
+        </div>
+        <span class="fc2-location">Paris, France</span>
+        <div class="fc2-info-row3">
+          <div class="fc2-stars">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+          </div>
+          <div class="fc2-audience"><img src="https://www.figma.com/api/mcp/asset/cd5bb8fa-b7d3-45d0-951a-b76f55168e9f" alt=""><span>50K</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 — center -->
+    <div class="fc2-card fc2-card--center" id="fc2-center-card">
+      <video id="fc2-center-vid" class="fc2-photo" preload="auto" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4" muted loop playsinline></video>
+      <button id="fc2-play-btn" onclick="var v=document.getElementById('fc2-center-vid');v.play();this.style.display='none';" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#102e37"><polygon points="6,3 20,12 6,21"/></svg></button>
+      <div class="fc2-badge">
+        <img src="https://www.figma.com/api/mcp/asset/c1fdbfdf-faf6-4320-a96c-3dd8e3c30d04" alt="">
+        <span>Verified</span>
+      </div>
+      <div class="fc2-info">
+        <div class="fc2-info-row1">
+          <div class="fc2-avatar"><img src="https://www.figma.com/api/mcp/asset/248462f7-76a1-4a58-bd4c-055611e48d15" alt=""></div>
+          <span class="fc2-handle">@sophiatravels</span>
+        </div>
+        <span class="fc2-location">Bali, Indonesia</span>
+        <div class="fc2-info-row3">
+          <div class="fc2-stars">
+            <img src="https://www.figma.com/api/mcp/asset/9616756e-72c2-454f-90f6-dfc2c1fd0d43" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9616756e-72c2-454f-90f6-dfc2c1fd0d43" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9616756e-72c2-454f-90f6-dfc2c1fd0d43" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9616756e-72c2-454f-90f6-dfc2c1fd0d43" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9616756e-72c2-454f-90f6-dfc2c1fd0d43" alt="">
+          </div>
+          <div class="fc2-audience"><img src="https://www.figma.com/api/mcp/asset/7ac441d1-36b9-4310-bdf3-730352d51f75" alt=""><span>120K</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="fc2-card fc2-card--side">
+      <video class="fc2-photo" preload="auto" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4" autoplay muted loop playsinline></video>
+      <div class="fc2-badge">
+        <img src="https://www.figma.com/api/mcp/asset/c1fdbfdf-faf6-4320-a96c-3dd8e3c30d04" alt="">
+        <span>Verified</span>
+      </div>
+      <div class="fc2-info">
+        <div class="fc2-info-row1">
+          <div class="fc2-avatar"><img src="https://www.figma.com/api/mcp/asset/248462f7-76a1-4a58-bd4c-055611e48d15" alt=""></div>
+          <span class="fc2-handle">@marcuswanders</span>
+        </div>
+        <span class="fc2-location">London, UK</span>
+        <div class="fc2-info-row3">
+          <div class="fc2-stars">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+          </div>
+          <div class="fc2-audience"><img src="https://www.figma.com/api/mcp/asset/cd5bb8fa-b7d3-45d0-951a-b76f55168e9f" alt=""><span>35K</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="fc2-card fc2-card--side">
+      <video class="fc2-photo" preload="auto" src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4" autoplay muted loop playsinline></video>
+      <div class="fc2-badge">
+        <img src="https://www.figma.com/api/mcp/asset/c1fdbfdf-faf6-4320-a96c-3dd8e3c30d04" alt="">
+        <span>Verified</span>
+      </div>
+      <div class="fc2-info">
+        <div class="fc2-info-row1">
+          <div class="fc2-avatar"><img src="https://www.figma.com/api/mcp/asset/248462f7-76a1-4a58-bd4c-055611e48d15" alt=""></div>
+          <span class="fc2-handle">@emmacreates</span>
+        </div>
+        <span class="fc2-location">New York, USA</span>
+        <div class="fc2-info-row3">
+          <div class="fc2-stars">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+            <img src="https://www.figma.com/api/mcp/asset/9d49b31a-8f11-4877-a195-ad62ab5c122d" alt="">
+          </div>
+          <div class="fc2-audience"><img src="https://www.figma.com/api/mcp/asset/cd5bb8fa-b7d3-45d0-951a-b76f55168e9f" alt=""><span>75K</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pagination dots -->
+  <div class="creators__dots">
+    <span class="creators__dot"></span>
+    <span class="creators__dot"></span>
+    <span class="creators__dot creators__dot--active"></span>
+    <span class="creators__dot"></span>
+    <span class="creators__dot"></span>
+  </div>
+
+  <!-- CTA button -->
+  <div class="creators__cta">
+    <a href="#" class="btn btn--teal" style="background:linear-gradient(5.745deg,#1a98a6 13.297%,#18c6d9 89.683%);border:1.162px solid rgba(26,152,166,0.63);box-shadow:0px 1.162px 2.324px 0px #1a98a6,0px 0px 0px 2.324px rgba(26,152,166,0.36);padding:12.782px 23.239px;border-radius:13.944px;font-size:16px;line-height:23.239px;color:#fff;text-decoration:none;display:inline-block;">Get Started Now</a>
+  </div>
+
+</section>
+
+<!-- ── PROVEN RESULTS ── -->
+<section class="results">
+
+  <!-- Background -->
+  <div class="results__bg">
+    <img src="https://www.figma.com/api/mcp/asset/298df834-4d50-4185-a0d0-f4f398468592" alt="">
+  </div>
+
+  <!-- Header -->
+  <div class="results__header">
+    <p class="results__label">Proven Results</p>
+    <div>
+      <h2 class="results__title">Real Hotels. Real Campaigns. Real Impact.</h2>
+      <p class="results__sub">See how properties like yours are driving bookings through creator partnerships.</p>
+    </div>
+  </div>
+
+  <!-- Case study card -->
+  <div class="cs-card">
+
+    <!-- Left: hotel image + thumbnail strip -->
+    <div class="cs-left">
+      <img class="cs-hotel-img" src="https://www.figma.com/api/mcp/asset/a868e59e-b20c-491c-a6ae-f8781b5ae365" alt="Hotel">
+      <div class="cs-gradient"></div>
+      <div class="cs-thumbs">
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/9586859a-feac-459f-a413-b61843ca6417" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/746e0f65-7be6-46b5-862d-5b5c61aaf4d6" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/1398c832-87a0-4c8c-bc5b-584f2cdaa605" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/2e57407b-a6af-4440-ac45-b4410ff49f71" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/79d69e7a-8dd2-4737-b4da-b612fe5fe0db" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="cs-thumb" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4">
+          <img class="cs-thumb-img" src="https://www.figma.com/api/mcp/asset/17cd19d1-fccc-448c-8cae-df0d3becd75e" alt="">
+          <div class="cs-play"><svg viewBox="0 0 24 24" fill="white"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: case study details -->
+    <div class="cs-right">
+
+      <!-- Hotel logo -->
+      <div class="cs-logo-card">
+        <img id="cs-logo" src="https://www.figma.com/api/mcp/asset/f3d7a04e-92ac-48d6-b34f-62eb519b38b9" alt="">
+      </div>
+
+      <!-- Sections -->
+      <div class="cs-sections">
+
+        <div class="cs-section">
+          <h3 class="cs-section-title">Problem</h3>
+          <p class="cs-section-text" id="cs-problem">Needed fresh social content to drive direct bookings ahead of their peak summer season</p>
+        </div>
+        <hr class="cs-divider">
+
+        <div class="cs-section">
+          <h3 class="cs-section-title">Solution</h3>
+          <p class="cs-section-text" id="cs-solution">Booked 3 travel creators for 2-night complimentary stays with a UGC-only content package</p>
+        </div>
+        <hr class="cs-divider">
+
+        <div class="cs-section">
+          <h3 class="cs-section-title">Results</h3>
+          <div class="cs-stats">
+            <div class="cs-stat">
+              <div class="cs-stat-value"><span id="cs-stat1">340K</span>
+                <svg class="cs-trending" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              <div class="cs-stat-label" id="cs-label1">Impressions</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-value"><span id="cs-stat2">28</span>
+                <svg class="cs-trending" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              <div class="cs-stat-label" id="cs-label2">Assets</div>
+            </div>
+            <div class="cs-stat">
+              <div class="cs-stat-value"><span id="cs-stat3">12%</span>
+                <svg class="cs-trending" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              <div class="cs-stat-label" id="cs-label3">Engagement</div>
+            </div>
+          </div>
+        </div>
+        <hr class="cs-divider">
+
+      </div>
+
+      <!-- CTA row -->
+      <div class="cs-cta-row">
+        <a href="#" class="cs-cta-btn">View Full Case Study</a>
+        <div class="cs-nav">
+          <button class="cs-nav-btn cs-nav-btn--prev" id="cs-prev" aria-label="Previous">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#d9a441" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="cs-nav-btn cs-nav-btn--next" id="cs-next" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ── COMPLETE PLATFORM ── -->
+<section class="platform">
+
+  <!-- Background ellipse -->
+  <div class="platform__bg-ellipse">
+    <img src="https://www.figma.com/api/mcp/asset/9f1bbf06-a5e0-4062-8399-650a7166a56a" alt="">
+  </div>
+
+  <!-- Header -->
+  <div class="platform__header">
+    <p class="platform__label">Complete Platform</p>
+    <div>
+      <h2 class="platform__title">Everything You Need<br>in One Place</h2>
+      <p class="platform__sub">Sourcing, vetting, contracts, tracking, and analytics—all handled.</p>
+    </div>
+  </div>
+
+  <!-- Feature cards grid -->
+  <div class="platform__grid">
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">Vetted Creator Network</h3>
+        <p class="pf-card__desc">Every creator is portfolio-reviewed and audience-verified</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">UGC + Native Posting</h3>
+        <p class="pf-card__desc">Get assets for your channels AND reach their audience</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">Campaign Dashboard</h3>
+        <p class="pf-card__desc">Track deliverables, deadlines, and performance in real-time</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">Direct Messaging</h3>
+        <p class="pf-card__desc">Communicate with creators without leaving the platform</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">Analytics &amp; Reporting</h3>
+        <p class="pf-card__desc">See reach, engagement, and booking attribution</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+    <div class="pf-card">
+      <div class="pf-card__text">
+        <h3 class="pf-card__title">Contracts &amp; Insurance</h3>
+        <p class="pf-card__desc">Every collaboration is legally protected by us</p>
+      </div>
+      <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
+    </div>
+
+  </div>
+
+</section>
+
+
+<script>
+  // How It Works — scroll-reveal steps 2 & 3
+  (function () {
+    var hiddenSteps = document.querySelectorAll('.hiw__step--hidden');
+    if (!hiddenSteps.length || !('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('hiw__step--visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -60px 0px'
+    });
+
+    hiddenSteps.forEach(function (step) {
+      observer.observe(step);
+    });
+  })();
+</script>
+
+<script>
+(function () {
+  var box     = document.getElementById('pov-video-box');
+  var vid     = document.getElementById('pov-vid');
+  var playBtn = document.getElementById('pov-play-btn');
+  var fade    = document.getElementById('pov-fade');
+  if (!box || !vid || !playBtn) return;
+
+  playBtn.addEventListener('click', function () {
+    box.classList.add('is-playing');
+    fade.style.transition = 'opacity 0.4s ease';
+    vid.play();
+  });
+
+  vid.addEventListener('ended', function () {
+    box.classList.remove('is-playing');
+    fade.style.opacity = '';
+    vid.currentTime = 0;
+  });
+
+  vid.addEventListener('pause', function () {
+    if (vid.currentTime > 0 && !vid.ended) {
+      box.classList.remove('is-playing');
+    }
+  });
+})();
+</script>
+
+
+<script>
+// Center creator card — autoplay when video is ready, else show play button
+(function () {
+  var vid = document.getElementById('fc2-center-vid');
+  var btn = document.getElementById('fc2-play-btn');
+  if (!vid) return;
+  vid.muted = true;
+  vid.addEventListener('canplay', function () {
+    var p = vid.play();
+    if (p) p.then(function () { if (btn) btn.style.display = 'none'; }).catch(function () {});
+  });
+  vid.load();
+})();
+</script>
+
+<!-- Case study carousel -->
+<script>
+(function () {
+  var studies = [
+    {
+      logo: 'https://www.figma.com/api/mcp/asset/f3d7a04e-92ac-48d6-b34f-62eb519b38b9',
+      alt:  'Marriott International',
+      problem:  'Wanted to fill rooms during a slow mid-week period without discounting rates',
+      solution: 'Booked 3 creators for 2-night stays and a UGC-only content package targeting business travelers',
+      stat1: '340K', label1: 'Total Reach',
+      stat2: '28',   label2: 'Deliverables',
+      stat3: '6.2%', label3: 'Booking Rate'
+    },
+    {
+      logo: 'https://www.figma.com/api/mcp/asset/550ed7e7-9d13-4c0a-b531-702daccc270c',
+      alt:  'Aman Resorts',
+      problem:  'Wanted to reach younger luxury travelers discovering Aman for the first time',
+      solution: 'Partnered with 2 adventure-luxury creators for immersive 4-night stays with full native posting rights',
+      stat1: '1.2M', label1: 'Total Reach',
+      stat2: '45',   label2: 'Deliverables',
+      stat3: 'Condé Nast', label3: 'Featured In'
+    },
+    {
+      logo: 'https://www.figma.com/api/mcp/asset/112fb671-b0cb-44a9-b43f-b2cdf6f24ec4',
+      alt:  'Hyatt Regency',
+      problem:  'Launching a newly renovated rooftop pool & bar and needed buzz before the official opening',
+      solution: 'Hosted 4 food & lifestyle creators for an exclusive pre-opening night with full rooftop access',
+      stat1: '520K', label1: 'Total Reach',
+      stat2: '89K',  label2: 'Booking Clicks',
+      stat3: '4.8%', label3: 'Conversion'
+    },
+    {
+      logo: 'https://www.figma.com/api/mcp/asset/8c5ed993-2564-4ef7-bf14-429ae1367ce2',
+      alt:  'Small Luxury Hotels',
+      problem:  'Member properties needed authentic storytelling content to compete against OTA-driven discovery',
+      solution: 'Matched 5 slow-travel micro-creators with SLH properties across Italy and Portugal for long-form stays',
+      stat1: '290K', label1: 'Total Reach',
+      stat2: '52',   label2: 'Deliverables',
+      stat3: '3.1×', label3: 'ROAS'
+    },
+    {
+      logo: 'https://www.figma.com/api/mcp/asset/2e593547-cb6d-4ac1-8259-accdcc04833c',
+      alt:  'Four Seasons',
+      problem:  'Launching a new wellness retreat concept and needed aspirational content before the press trip',
+      solution: 'Curated a 3-creator wellness collaboration with a 5-night Maldives stay and spa exclusives',
+      stat1: '2.1M', label1: 'Total Reach',
+      stat2: '67',   label2: 'Deliverables',
+      stat3: '21%',  label3: 'Engagement'
+    }
+  ];
+
+  var idx = 0;
+  var prevBtn = document.getElementById('cs-prev');
+  var nextBtn = document.getElementById('cs-next');
+
+  function updateButtons() {
+    var isFirst = idx === 0;
+    var isLast  = idx === studies.length - 1;
+
+    prevBtn.disabled = isFirst;
+    prevBtn.style.background = isFirst ? 'rgba(217,164,65,0.06)' : '#d9a441';
+    prevBtn.style.cursor = isFirst ? 'default' : 'pointer';
+    prevBtn.querySelector('svg').setAttribute('stroke', isFirst ? '#d9a441' : '#fff');
+    prevBtn.querySelector('svg').style.opacity = isFirst ? '0.3' : '1';
+
+    nextBtn.disabled = isLast;
+    nextBtn.style.background = isLast ? 'rgba(217,164,65,0.06)' : '#d9a441';
+    nextBtn.style.cursor = isLast ? 'default' : 'pointer';
+    nextBtn.querySelector('svg').setAttribute('stroke', isLast ? '#d9a441' : '#fff');
+    nextBtn.querySelector('svg').style.opacity = isLast ? '0.3' : '1';
+  }
+
+  function render() {
+    var s = studies[idx];
+    document.getElementById('cs-logo').src = s.logo;
+    document.getElementById('cs-logo').alt = s.alt;
+    document.getElementById('cs-problem').textContent  = s.problem;
+    document.getElementById('cs-solution').textContent = s.solution;
+    document.getElementById('cs-stat1').textContent  = s.stat1;
+    document.getElementById('cs-label1').textContent = s.label1;
+    document.getElementById('cs-stat2').textContent  = s.stat2;
+    document.getElementById('cs-label2').textContent = s.label2;
+    document.getElementById('cs-stat3').textContent  = s.stat3;
+    document.getElementById('cs-label3').textContent = s.label3;
+    updateButtons();
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (idx < studies.length - 1) { idx++; render(); }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (idx > 0) { idx--; render(); }
+  });
+
+  render();
+})();
+</script>
+
+<!-- Case study video lightbox -->
+<div class="cs-modal" id="cs-modal">
+  <div class="cs-modal-inner">
+    <video id="cs-modal-video" controls playsinline></video>
+    <button class="cs-modal-close" id="cs-modal-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var modal  = document.getElementById('cs-modal');
+  var video  = document.getElementById('cs-modal-video');
+  var closeBtn = document.getElementById('cs-modal-close');
+
+  document.querySelectorAll('.cs-thumb[data-video]').forEach(function (thumb) {
+    thumb.addEventListener('click', function () {
+      video.src = thumb.dataset.video;
+      modal.classList.add('is-open');
+      video.play().catch(function(){});
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    video.pause();
+    video.src = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
+})();
+</script>
+
+<!-- ── TESTIMONIALS ── -->
+<section class="testimonials">
+
+  <div class="testimonials__map"></div>
+
+  <div class="testimonials__left">
+    <p class="testimonials__label">What Our Partners Say</p>
+    <h2 class="testimonials__title">Trusted by Hotel Marketers Worldwide</h2>
+    <p class="testimonials__sub">Hear from the teams using Ukreate to transform their content strategy.</p>
+    <a href="#" class="btn btn--gold" style="background:linear-gradient(5.745deg,#d7a543 13.297%,#efc470 89.683%);border:1.162px solid rgba(215,165,67,0.57);box-shadow:0px 1.162px 2.324px 0px #d7a543,0px 0px 0px 2.324px rgba(255,255,255,0.4);padding:12.782px 23.239px;border-radius:13.944px;font-size:16px;line-height:23.239px;text-shadow:0 0 0.581px white;color:#fff;align-self:flex-start;display:inline-block;text-decoration:none;">Get Started Now</a>
+  </div>
+
+  <div class="tc-card">
+    <div class="tc-avatar">
+      <img id="tc-avatar-img" src="https://www.figma.com/api/mcp/asset/6ae88755-bf5e-4e57-b24d-a5c36d78ef94" alt="">
+    </div>
+    <div class="tc-content">
+      <div>
+        <p class="tc-name" id="tc-name">Sarah Chen,</p>
+        <p class="tc-role" id="tc-role">Director of Digital Marketing, Aman Resorts</p>
+      </div>
+      <p class="tc-quote" id="tc-quote">Ukreate completely changed how we approach influencer marketing. We've cut our sourcing time by 80% and the content quality is consistently excellent.</p>
+      <div class="tc-nav">
+        <button class="tc-nav-btn tc-nav-btn--prev" id="tc-prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="tc-nav-btn tc-nav-btn--next" id="tc-next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+(function () {
+  var testimonials = [
+    { name: 'Sarah Chen,',     role: 'Director of Digital Marketing, Aman Resorts',         quote: 'Ukreate completely changed how we approach influencer marketing. We\'ve cut our sourcing time by 80% and the content quality is consistently excellent.',            avatar: 'https://www.figma.com/api/mcp/asset/6ae88755-bf5e-4e57-b24d-a5c36d78ef94' },
+    { name: 'James Whitfield,', role: 'VP of Marketing, Four Seasons Hotels',                quote: 'We ran our best-performing campaign of the year through Ukreate. The creator match was perfect and the content delivered 2× our expected reach.',                    avatar: 'https://www.figma.com/api/mcp/asset/6ae88755-bf5e-4e57-b24d-a5c36d78ef94' },
+    { name: 'Priya Nair,',     role: 'Head of Brand, Hyatt Regency EMEA',                   quote: 'Finally a platform that understands luxury hospitality. Vetting, contracts and payments — all in one place. It\'s saved us weeks of back-and-forth.',                 avatar: 'https://www.figma.com/api/mcp/asset/6ae88755-bf5e-4e57-b24d-a5c36d78ef94' },
+    { name: 'Luca Ferretti,',  role: 'Marketing Director, Small Luxury Hotels',             quote: 'Our member properties saw a 3× ROAS from the first Ukreate campaign. The calibre of creators on this platform is unlike anything we\'d found before.',              avatar: 'https://www.figma.com/api/mcp/asset/6ae88755-bf5e-4e57-b24d-a5c36d78ef94' }
+  ];
+
+  var idx = 0;
+  var prevBtn = document.getElementById('tc-prev');
+  var nextBtn = document.getElementById('tc-next');
+
+  function updateButtons() {
+    var isFirst = idx === 0;
+    var isLast  = idx === testimonials.length - 1;
+    prevBtn.disabled = isFirst;
+    prevBtn.style.background = isFirst ? 'rgba(217,164,65,0.08)' : 'rgba(217,164,65,0.35)';
+    prevBtn.style.cursor = isFirst ? 'default' : 'pointer';
+    prevBtn.querySelector('svg').setAttribute('stroke', isFirst ? 'rgba(255,255,255,0.3)' : '#fff');
+    nextBtn.disabled = isLast;
+    nextBtn.style.background = isLast ? 'rgba(217,164,65,0.3)' : '#d9a441';
+    nextBtn.style.cursor = isLast ? 'default' : 'pointer';
+  }
+
+  function render() {
+    var t = testimonials[idx];
+    document.getElementById('tc-name').textContent  = t.name;
+    document.getElementById('tc-role').textContent  = t.role;
+    document.getElementById('tc-quote').textContent = t.quote;
+    document.getElementById('tc-avatar-img').src    = t.avatar;
+    updateButtons();
+  }
+
+  nextBtn.addEventListener('click', function () { if (idx < testimonials.length - 1) { idx++; render(); } });
+  prevBtn.addEventListener('click', function () { if (idx > 0) { idx--; render(); } });
+
+  render();
+})();
+</script>
+
+<!-- ── FOR CREATORS ── -->
+<section class="for-creators">
+
+  <img class="fc__phone" src="https://www.figma.com/api/mcp/asset/7c607e1f-cfb7-46fd-ab1b-e7cbd2f5a0ad" alt="">
+
+  <div class="fc__content">
+    <div class="fc__top">
+      <div class="fc__text">
+        <p class="fc__label">For Creators</p>
+        <h2 class="fc__title">Are You a Travel Creator?</h2>
+        <p class="fc__body">Join 500+ professionals earning $2,500+ per project with the world's top hotels</p>
+      </div>
+      <ul class="fc__benefits">
+        <li class="fc__benefit">
+          <span class="fc__tick"><img src="https://www.figma.com/api/mcp/asset/2b0e366f-63c5-4da7-8e0d-993bb7df5d97" alt=""></span>
+          <span class="fc__benefit-text">Premium hotel partnerships worldwide</span>
+        </li>
+        <li class="fc__benefit">
+          <span class="fc__tick"><img src="https://www.figma.com/api/mcp/asset/2b0e366f-63c5-4da7-8e0d-993bb7df5d97" alt=""></span>
+          <span class="fc__benefit-text">Paid UGC and native posting opportunities</span>
+        </li>
+        <li class="fc__benefit">
+          <span class="fc__tick"><img src="https://www.figma.com/api/mcp/asset/2b0e366f-63c5-4da7-8e0d-993bb7df5d97" alt=""></span>
+          <span class="fc__benefit-text">Insurance and contracts handled for you</span>
+        </li>
+        <li class="fc__benefit">
+          <span class="fc__tick"><img src="https://www.figma.com/api/mcp/asset/2b0e366f-63c5-4da7-8e0d-993bb7df5d97" alt=""></span>
+          <span class="fc__benefit-text">Exclusive creator community access</span>
+        </li>
+      </ul>
+    </div>
+    <a href="#" class="fc__btn">Apply as a Creator</a>
+  </div>
+
+</section>
+
+<!-- ── PRICING ── -->
+<section class="pricing">
+
+  <div class="pricing__header">
+    <p class="pricing__label">Transparent Pricing</p>
+    <h2 class="pricing__title">Plans That Scale With You</h2>
+    <p class="pricing__sub">Simple pricing for boutique hotels to global portfolios. No hidden fees.</p>
+  </div>
+
+  <div class="pricing__cards">
+
+    <!-- Starter -->
+    <div class="pr-card pr-card--light">
+      <p class="pr-card__name">Starter</p>
+      <p class="pr-card__starting">Starting at</p>
+      <div class="pr-card__price-row">
+        <span class="pr-card__currency">$</span>
+        <span class="pr-card__amount">1,950</span>
+        <span class="pr-card__period">/year</span>
+      </div>
+      <p class="pr-card__billing">Annual Subscription</p>
+      <a href="#" class="pr-card__btn pr-card__btn--teal">Select Package</a>
+      <ul class="pr-card__features">
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>3 Videos per month</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>Basic Analytics</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>Normal Support</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>No license available</span></li>
+      </ul>
+    </div>
+
+    <!-- Growth (highlighted) -->
+    <div class="pr-card pr-card--dark">
+      <p class="pr-card__name">Growth</p>
+      <p class="pr-card__starting">Starting at</p>
+      <div class="pr-card__price-row">
+        <span class="pr-card__currency">$</span>
+        <span class="pr-card__amount">9,950</span>
+      </div>
+      <p class="pr-card__billing">Setup Cost</p>
+      <a href="#" class="pr-card__btn pr-card__btn--gold">Select Package</a>
+      <ul class="pr-card__features">
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/2b156579-ccfc-4ac7-b1bd-7147c0f7a418" alt=""><span>Unlimited Videos per month</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/2b156579-ccfc-4ac7-b1bd-7147c0f7a418" alt=""><span>Advanced Analytics</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/2b156579-ccfc-4ac7-b1bd-7147c0f7a418" alt=""><span>Priority Support</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/2b156579-ccfc-4ac7-b1bd-7147c0f7a418" alt=""><span>License Available</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/2b156579-ccfc-4ac7-b1bd-7147c0f7a418" alt=""><span>Dedicated Account Manager</span></li>
+      </ul>
+    </div>
+
+    <!-- Enterprise -->
+    <div class="pr-card pr-card--light">
+      <p class="pr-card__name">Enterprise</p>
+      <p class="pr-card__starting">Starting at</p>
+      <div class="pr-card__price-row">
+        <span class="pr-card__currency">$</span>
+        <span class="pr-card__amount">19,500</span>
+        <span class="pr-card__period">/year</span>
+      </div>
+      <p class="pr-card__billing">Annual Subscription</p>
+      <a href="#" class="pr-card__btn pr-card__btn--teal">Select Package</a>
+      <ul class="pr-card__features">
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>Unlimited Videos per month</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>Advanced Analytics</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>Priority Support</span></li>
+        <li class="pr-card__feature"><img src="https://www.figma.com/api/mcp/asset/73353db5-d874-4d3b-a2a1-c95d7ff0dd64" alt=""><span>License Available</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ── FAQs ── -->
+<section class="faqs">
+
+  <div class="faqs__header">
+    <!-- Desktop header -->
+    <div class="faqs__desktop-header">
+      <div class="faqs__row1">
+        <div class="faqs__big">COMMON</div>
+        <div class="faqs__side">
+          <span>Some questions</span>
+          <span>People usually ask</span>
+        </div>
+      </div>
+      <div class="faqs__big">QUESTIONS</div>
+    </div>
+    <!-- Mobile header -->
+    <div class="faqs__mobile-header">
+      <p class="faqs__mobile-label">FAQ</p>
+      <div>
+        <h2 class="faqs__mobile-title">Common Questions</h2>
+        <p class="faqs__mobile-sub">Everything you need to know about Ukreate</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="faqs__list">
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">How does Ukreate work for hotels?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Hotels create a profile, set their campaign brief, and browse our vetted creator network. Once you find the right match, Ukreate handles contracts, scheduling, and content delivery — all in one platform.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">How are creators vetted on Ukreate?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Every creator goes through a multi-step review covering content quality, audience authenticity, engagement rates, and a track record of professional hotel collaborations. Less than 10% of applicants are accepted.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">What content formats do creators produce?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Creators on Ukreate produce UGC videos, Instagram Reels, TikToks, YouTube vlogs, photography packages, and native content for your owned channels — all tailored to your brief.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">How much does a creator collaboration cost?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Collaboration costs vary by creator tier and deliverables. Our Starter plan includes 3 projects per month from $1,950/year. Enterprise and custom packages are available for larger hotel groups.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">Who handles contracts and licensing?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Ukreate manages all contracts, NDAs, usage rights, and licensing agreements on your behalf. You retain full usage rights to the content produced under your campaigns.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">How long does a typical campaign take?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">From brief to published content, most campaigns complete in 2–4 weeks. Rush timelines are available on Growth and Enterprise plans.</p>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-item__header">
+        <span class="faq-item__q">Can I choose which creators I work with?</span>
+        <span class="faq-item__icon">+</span>
+      </div>
+      <p class="faq-item__answer">Yes. You can browse creator profiles, review their portfolio and metrics, and select the exact creators you want — or let our matching algorithm suggest the best fit for your campaign goals.</p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+
+  <!-- Full-bleed background photo -->
+  <img class="footer__bg" src="https://www.figma.com/api/mcp/asset/df9cb076-c2cb-4f8b-9956-1eaff744b0b5" alt="">
+
+  <div class="footer__overlay">
+
+    <!-- Newsletter -->
+    <div class="footer__newsletter">
+      <div class="footer__nl-text">
+        <p class="footer__nl-stay">Stay Updated</p>
+        <div class="footer__nl-titles">
+          <h2 class="footer__nl-title">Join Our Newsletter</h2>
+          <p class="footer__nl-sub">Get the latest insights on travel creator marketing and exclusive opportunities.</p>
+        </div>
+      </div>
+      <div class="footer__nl-form">
+        <input class="footer__nl-input" type="email" placeholder="Your Email Address">
+        <button class="footer__nl-btn">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- White card + watermark -->
+    <div class="footer__bottom-wrap">
+
+      <div class="footer__card">
+        <!-- Brand + nav -->
+        <div class="footer__card-inner">
+          <div class="footer__brand">
+            <div class="footer__logo">
+              <img src="https://www.figma.com/api/mcp/asset/838e1a3f-895e-4f07-9844-9e18212cc155" alt="Ukreate">
+            </div>
+            <div class="footer__brand-bottom">
+              <p class="footer__tagline">The world's premium travel creator marketplace<br>connecting hotels with elite content creators.</p>
+              <div class="footer__socials">
+                <a href="#" class="footer__social"><img class="ig" src="https://www.figma.com/api/mcp/asset/02a301be-8499-4436-8aaa-028a3b7df928" alt="Instagram"></a>
+                <a href="#" class="footer__social"><img class="li" src="https://www.figma.com/api/mcp/asset/76aff114-0886-45a1-bf6b-efe9929782eb" alt="LinkedIn"></a>
+                <a href="#" class="footer__social"><img class="tt" src="https://www.figma.com/api/mcp/asset/82c8597e-48e4-4e12-9210-5dabb4b1653b" alt="TikTok"></a>
+                <a href="#" class="footer__social"><img class="yt" src="https://www.figma.com/api/mcp/asset/4e74db98-6d2b-47f9-a8d6-14b7b585236b" alt="YouTube"></a>
+              </div>
+            </div>
+          </div>
+          <div class="footer__nav">
+            <div class="footer__nav-col">
+              <h4>For Hotels</h4>
+              <ul>
+                <li><a href="#">How It Works</a></li>
+                <li><a href="#">Browse Creators</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Case Studies</a></li>
+              </ul>
+            </div>
+            <div class="footer__nav-col">
+              <h4>For Creators</h4>
+              <ul>
+                <li><a href="#">Apply Now</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">Community</a></li>
+              </ul>
+            </div>
+            <div class="footer__nav-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+            <div class="footer__nav-col">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Divider + bottom bar -->
+        <div class="footer__card-footer">
+          <div class="footer__divider"></div>
+          <div class="footer__bottom-bar">
+            <span class="footer__copy">© 2026 Ukreate. All rights reserved.</span>
+            <div class="footer__legal">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UKREATE watermark -->
+      <img class="footer__watermark" src="https://www.figma.com/api/mcp/asset/a7c06fbb-7361-4e9a-acd3-366d08f2f5c6" alt="">
+
+    </div>
+
+  </div>
+
+  <!-- ── MOBILE FOOTER (≤900px only) ── -->
+  <div class="footer__mobile">
+
+    <!-- Newsletter -->
+    <div class="fmob__newsletter">
+      <p class="fmob__stay">Stay Updated</p>
+      <h2 class="fmob__title">Join Our Newsletter</h2>
+      <p class="fmob__sub">Get the latest insights on travel creator marketing and exclusive opportunities.</p>
+      <div class="fmob__form">
+        <input type="email" placeholder="Your Email Address" class="fmob__input">
+        <button class="fmob__btn">Subscribe</button>
+      </div>
+    </div>
+
+    <!-- Brand + socials -->
+    <div class="fmob__brand">
+      <img src="https://www.figma.com/api/mcp/asset/838e1a3f-895e-4f07-9844-9e18212cc155" alt="Ukreate" class="fmob__logo">
+      <p class="fmob__tagline">The world's premium travel creator marketplace connecting hotels with elite content creators.</p>
+      <div class="fmob__socials">
+        <a href="#" class="fmob__social"><img class="ig" src="https://www.figma.com/api/mcp/asset/02a301be-8499-4436-8aaa-028a3b7df928" alt="Instagram"></a>
+        <a href="#" class="fmob__social"><img class="li" src="https://www.figma.com/api/mcp/asset/76aff114-0886-45a1-bf6b-efe9929782eb" alt="LinkedIn"></a>
+        <a href="#" class="fmob__social"><img class="tt" src="https://www.figma.com/api/mcp/asset/82c8597e-48e4-4e12-9210-5dabb4b1653b" alt="TikTok"></a>
+        <a href="#" class="fmob__social"><img class="yt" src="https://www.figma.com/api/mcp/asset/4e74db98-6d2b-47f9-a8d6-14b7b585236b" alt="YouTube"></a>
+      </div>
+    </div>
+
+    <!-- Nav links — 2-column grid -->
+    <div class="fmob__nav">
+      <div class="fmob__col">
+        <h4 class="fmob__col-title">For Hotels</h4>
+        <ul>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Browse Creators</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Case Studies</a></li>
+        </ul>
+      </div>
+      <div class="fmob__col">
+        <h4 class="fmob__col-title">For Creators</h4>
+        <ul>
+          <li><a href="#">Apply Now</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Community</a></li>
+        </ul>
+      </div>
+      <div class="fmob__col">
+        <h4 class="fmob__col-title">Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="fmob__col">
+        <h4 class="fmob__col-title">Legal</h4>
+        <ul>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="fmob__divider"></div>
+
+    <!-- Bottom bar -->
+    <div class="fmob__bottom">
+      <span class="fmob__copy">© 2026 Ukreate. All rights reserved.</span>
+      <div class="fmob__legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(function (item) {
+  item.querySelector('.faq-item__header').addEventListener('click', function () {
+    item.classList.toggle('is-open');
+  });
+});
+</script>
+
+<script>
+// Hamburger menu
+(function () {
+  var btn   = document.getElementById('nav-hamburger');
+  var menu  = document.getElementById('nav-mobile-menu');
+  var close = document.getElementById('nav-mobile-close');
+  if (!btn || !menu) return;
+  function open()  { menu.classList.add('is-open');  btn.classList.add('is-open');  document.body.style.overflow = 'hidden'; }
+  function close_() { menu.classList.remove('is-open'); btn.classList.remove('is-open'); document.body.style.overflow = ''; }
+  btn.addEventListener('click', function () { menu.classList.contains('is-open') ? close_() : open(); });
+  if (close) close.addEventListener('click', close_);
+  menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close_); });
+})();
+</script>
+
+<script>
+// Featured Creators — scroll carousel to center card on load
+(function () {
+  var cards = document.querySelector('.creators__cards');
+  var center = document.getElementById('fc2-center-card');
+  if (!cards || !center) return;
+  function scrollToCenter() {
+    var cardRect  = cards.getBoundingClientRect();
+    var centerRect = center.getBoundingClientRect();
+    var scrollTarget = cards.scrollLeft + (centerRect.left - cardRect.left) - (cardRect.width / 2) + (centerRect.width / 2);
+    cards.scrollLeft = scrollTarget;
+  }
+  if (window.innerWidth <= 900) {
+    // wait for layout
+    setTimeout(scrollToCenter, 50);
+  }
+  window.addEventListener('resize', function () {
+    if (window.innerWidth <= 900) scrollToCenter();
+  });
+})();
+</script>
+
+</body>
+</html>

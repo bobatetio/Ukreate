@@ -2063,7 +2063,9 @@
       /* Hide the desktop Get Started button — replaced by mobile CTA */
       .hiw__left-body .btn--gold { display: none; }
       .hiw__right { width: 88%; max-width: 420px; padding-top: 36px; display: flex; flex-direction: column; align-items: center; }
-      .hiw__step { padding-bottom: 36px; width: 100%; }
+      .hiw__step { padding-bottom: 36px; width: 100%; transition: opacity 0.7s ease, transform 0.7s ease; }
+      .hiw__step--hidden { opacity: 0; transform: translateY(40px); }
+      .hiw__step--visible { opacity: 1; transform: translateY(0); }
       .hiw__step-header { width: 100%; }
       .hiw__card { width: 100%; max-width: 360px; height: 220px; }
       /* Show mobile CTA */
@@ -3718,6 +3720,7 @@
     var hiddenSteps = document.querySelectorAll('.hiw__step--hidden');
     if (!hiddenSteps.length || !('IntersectionObserver' in window)) return;
 
+    var isMobile = window.innerWidth <= 900;
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -3726,8 +3729,8 @@
         }
       });
     }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -60px 0px'
+      threshold: 0.08,
+      rootMargin: isMobile ? '0px 0px 0px 0px' : '0px 0px -60px 0px'
     });
 
     hiddenSteps.forEach(function (step) {

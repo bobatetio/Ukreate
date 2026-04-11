@@ -1664,7 +1664,17 @@
       width: 321px;
       height: 233px;
       object-fit: cover;
+      object-position: top center;
+      border-radius: 18px 0 0 0;
       pointer-events: none;
+    }
+
+    .platform__cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 56px;
+      position: relative;
+      z-index: 1;
     }
 
     /* ── TESTIMONIALS ── */
@@ -2114,7 +2124,7 @@
       .platform__grid { width: 100%; margin-top: 28px; gap: 14px; }
       /* Two-column grid, taller cards so text + image both visible */
       .pf-card { width: calc(50% - 7px); height: 300px; }
-      .pf-card__img { height: 160px; left: 20px; width: calc(100% - 40px); }
+      .pf-card__img { height: 160px; left: 20px; width: calc(100% - 40px); border-radius: 14px 0 0 0; }
 
       /* ── Testimonials ── */
       .testimonials { height: auto; min-height: 0; padding: 48px 24px 56px; overflow: visible; }
@@ -2243,7 +2253,7 @@
 
       /* Platform grid — single column */
       .pf-card { width: 100%; height: 280px; }
-      .pf-card__img { left: 16px; width: calc(100% - 32px); height: 150px; }
+      .pf-card__img { left: 16px; width: calc(100% - 32px); height: 150px; border-radius: 12px 0 0 0; }
 
       /* Testimonials */
       .tc-card { padding: 36px 18px 24px; margin-top: 56px; }
@@ -3702,6 +3712,11 @@
       <img class="pf-card__img" src="https://www.figma.com/api/mcp/asset/65374965-6a32-43ae-a0a6-0149b793204f" alt="">
     </div>
 
+  </div>
+
+  <!-- CTA -->
+  <div class="platform__cta">
+    <a href="#" class="btn btn--gold" style="background:linear-gradient(5.745deg,#d7a543 13.297%,#efc470 89.683%);border:1.162px solid rgba(215,165,67,0.57);box-shadow:0px 1.162px 2.324px 0px #d7a543,0px 0px 0px 2.324px rgba(255,255,255,0.4);padding:12.782px 23.239px;border-radius:13.944px;font-size:16px;line-height:23.239px;text-shadow:0 0 0.581px white;color:#fff;text-decoration:none;display:inline-block;">Get Started Now</a>
   </div>
 
 </section>

@@ -1957,17 +1957,17 @@
       .creators__label, .results__label, .platform__label,
       .testimonials__label, .pricing__label, .comparison__label,
       .hiw__label, .fc__label {
-        font-size: 11px; letter-spacing: 2px;
+        font-size: 11px; letter-spacing: 2px; line-height: 14px;
       }
       .creators__title, .results__title, .platform__title,
       .testimonials__title, .pricing__title, .comparison__title,
-      .hiw__title {
-        font-size: 28px; line-height: 34px;
+      .hiw__title, .fc__title {
+        font-size: 28px; line-height: 34px; letter-spacing: -1px;
       }
       .creators__sub, .results__sub, .platform__sub,
       .testimonials__sub, .pricing__sub, .comparison__sub,
-      .hiw__sub {
-        font-size: 14px; line-height: 22px;
+      .hiw__sub, .fc__body {
+        font-size: 14px; line-height: 22px; letter-spacing: -0.2px;
       }
 
       /* ── Navbar ── */
@@ -2161,17 +2161,15 @@
         left: auto; top: auto; width: 88%;
         max-width: 440px; margin: 0 auto; padding: 32px 0 0;
       }
-      .fc__title { font-size: 28px; line-height: 34px; width: 100%; }
-      .fc__body { width: 100%; font-size: 15px; line-height: 24px; }
+      .fc__title { width: 100%; }
+      .fc__body { width: 100%; }
       .fc__benefits { width: 100%; }
       .fc__benefit-text { font-size: 15px; white-space: normal; line-height: 22px; }
       .fc__btn { width: 100%; justify-content: center; height: 52px; font-size: 15px; }
 
       /* ── Pricing ── */
       .pricing { padding: 56px 24px 56px; }
-      .pricing__header { margin-bottom: 40px; gap: 10px; }
-      .pricing__title { font-size: 28px; line-height: 34px; }
-      .pricing__sub { font-size: 14px; }
+      .pricing__header { margin-bottom: 40px; gap: 21px; }
       .pricing__cards { flex-direction: column; align-items: stretch; gap: 16px; padding: 0 0; }
       .pr-card { width: 100%; max-width: none; border-radius: 20px; padding: 28px 24px 32px; }
       .pr-card__name { font-size: 24px; }
@@ -2261,6 +2259,7 @@
       .fc__btn { height: 50px; font-size: 15px; }
 
       /* Pricing */
+      .pricing__title { font-size: 24px; line-height: 30px; }
       .pr-card { padding: 24px 20px 28px; }
       .pr-card__currency, .pr-card__amount { font-size: 42px; }
       .pr-card__name { font-size: 22px; }

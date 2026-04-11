@@ -53,8 +53,6 @@
       pointer-events: none;
       animation: cloudDrift 40s linear infinite;
       overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
     }
 
     .hero__cloud-track img {
@@ -63,6 +61,8 @@
       opacity: 0.20;
       object-fit: cover;
       flex-shrink: 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 18%, black 82%, transparent 100%);
     }
 
     @keyframes cloudDrift {
@@ -2054,11 +2054,7 @@
         display: block !important;
       }
       .hero__skyline { display: none; }
-      .hero__cloud-track {
-        opacity: 0.45; max-width: none !important;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-      }
+      .hero__cloud-track { opacity: 0.45; max-width: none !important; }
       .hero__cloud-track img { opacity: 1; }
       /* Restore white fade */
       .hero__fade {

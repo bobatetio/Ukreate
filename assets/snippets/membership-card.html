@@ -1,0 +1,49 @@
+<!-- Ukreate Travel membership card — lifted out of the /for-creators/ hero on
+     2026-07-28 at Bob's request ("keep it somewhere, I'll say when we need it").
+     Nothing on the site renders this today. To put it back: drop the markup into
+     a section and re-add the CSS below to assets/css/forcreators.css.
+     The card also depends on --fc-gold and the fcShine keyframes. -->
+
+<!-- ===== MARKUP ===== -->
+<div class="fcCardWrap fcUp">
+      <div class="fcCard" data-tilt>
+        <div class="fcCard_top">
+          <span class="fcCard_brand">ukreate<em>Travel</em></span>
+          <span class="fcCard_member">Member</span>
+        </div>
+        <span class="fcCard_chip" aria-hidden="true"></span>
+        <div>
+          <div class="fcCard_rows">
+            <span class="fcCard_field"><span class="fcCard_k">Tier</span><span class="fcCard_v">Travel Creator</span></span>
+            <span class="fcCard_field"><span class="fcCard_k">Member name</span><span class="fcCard_v">Your Name</span></span>
+            <span class="fcCard_field"><span class="fcCard_k">Member since</span><span class="fcCard_v">2026</span></span>
+          </div>
+          <div class="fcCard_perks">
+            <span class="fcCard_perk">Free stays</span><span class="fcCard_perk">Client roster</span><span class="fcCard_perk">Academy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ===== CSS (was assets/css/forcreators.css) ===== -->
+<style>
+.fcCardWrap{perspective:1400px;display:flex;justify-content:center}
+.fcCard{position:relative;width:min(430px,100%);aspect-ratio:1.586/1;border-radius:22px;padding:clamp(20px,2.2vw,28px);
+.fcCard::before{content:"";position:absolute;inset:0;pointer-events:none;
+.fcCard::after{content:"";position:absolute;top:-60%;left:-30%;width:45%;height:220%;pointer-events:none;
+@media(prefers-reduced-motion:reduce){.fcCard::after{animation:none;opacity:0}}
+.fcCard_top{position:relative;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.fcCard_brand{font-family:"Marcellus",serif;font-size:clamp(19px,1.7vw,23px);line-height:1;color:#fff;letter-spacing:.01em}
+.fcCard_brand em{display:block;font-style:italic;font-size:.5em;letter-spacing:.32em;text-transform:uppercase;color:var(--fc-gold);margin-top:5px}
+.fcCard_member{font-family:'Lato',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+.fcCard_chip{position:relative;z-index:2;width:44px;height:33px;border-radius:7px;align-self:flex-start;margin-top:auto;
+.fcCard_rows{position:relative;z-index:2;display:flex;gap:clamp(20px,3vw,38px);align-items:flex-end;justify-content:space-between}
+.fcCard_field{min-width:0}
+.fcCard_k{display:block;font-family:'Lato',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:5px}
+.fcCard_v{display:block;font-family:"Marcellus",serif;font-size:clamp(13px,1.15vw,15.5px);color:#fff;letter-spacing:.06em;white-space:nowrap}
+.fcCard_perks{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.fcCard_perk{font-family:'Lato',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;
+  .fcCardWrap{order:2}
+.fcCard_chip{margin-top:0}
+.fcCard{justify-content:space-between;gap:clamp(10px,1.4vw,18px)}
+</style>

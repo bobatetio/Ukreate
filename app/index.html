@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your workspace | Ukreate</title>
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<meta name="robots" content="noindex,nofollow">
+<link href="/favicon.ico" rel="icon">
+<link href="/favicon.svg" rel="icon" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Lato:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/ukapp.css?v=7">
+<script>
+/* set the theme before first paint so there is no flash */
+(function(){var s=localStorage.getItem('uk_theme');
+var t=s||(window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+document.documentElement.setAttribute('data-theme',t);})();
+</script>
+</head>
+<body class="ukApp" data-ukapp>
+
+<aside class="ukSide" id="ukSide">
+  <div class="ukSide_brand"><a href="/" aria-label="Ukreate home">
+    <img class="ukLogo ukLogo--onDark" src="/assets/img/ukreate-logo-white.svg" alt="Ukreate" width="1300" height="800">
+    <img class="ukLogo ukLogo--onLight" src="/assets/img/ukreate-logo-ink.svg" alt="Ukreate" width="1300" height="800">
+  </a></div>
+  <div class="ukSide_scroll">
+    <div class="ukSide_group">
+      <p class="ukSide_gLabel" data-nav-label>Workspace</p>
+      <nav id="ukNav" aria-label="Workspace"></nav>
+    </div>
+  </div>
+  <div class="ukSide_foot">
+    <div class="ukSide_me">
+      <span class="ukSide_avatar" data-me-initials>RT</span>
+      <span class="ukSide_meText">
+        <span class="ukSide_meName" data-me-name>Robert Torres</span>
+        <span class="ukSide_meRole" data-me-role>Creator</span>
+      </span>
+    </div>
+  </div>
+</aside>
+
+<header class="ukTop">
+  <button class="ukTop_burger" type="button" aria-label="Menu" data-burger>
+    <span data-icon="list"></span>
+  </button>
+  <h1 class="ukTop_title" data-page-title>Home</h1>
+  <div class="ukTop_spacer"></div>
+
+  <div class="ukTheme" role="group" aria-label="Colour theme">
+    <button class="ukTheme_btn" type="button" data-theme-btn="light" aria-label="Light theme" title="Light">
+      <span data-icon="sun"></span>
+    </button>
+    <button class="ukTheme_btn" type="button" data-theme-btn="dark" aria-label="Dark theme" title="Dark">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.2A8.2 8.2 0 0 1 9.8 4a8.4 8.4 0 1 0 10.2 10.2Z"/></svg>
+    </button>
+  </div>
+
+  <div class="ukTop_switch">
+    <span class="ukTop_switchLabel">Preview as</span>
+    <button class="ukTop_switchBtn is-on" type="button" data-role-btn="creator">Creator</button>
+    <button class="ukTop_switchBtn" type="button" data-role-btn="brand">Travel brand</button>
+  </div>
+
+  <label class="ukTop_search">
+    <span data-icon="search"></span>
+    <input type="search" placeholder="Search" aria-label="Search">
+  </label>
+
+  <button class="ukTop_icon" type="button" aria-label="Collaborations">
+    <span data-icon="chat"></span>
+    <span class="ukTop_dot" data-inbox-count>3</span>
+  </button>
+</header>
+
+<main class="ukMain">
+
+  <!-- ===================== CREATOR HOME ===================== -->
+  <section class="ukView" data-view="home" data-role="creator">
+    <div class="ukPageHead">
+      <h2>Good morning, Robert</h2>
+      <p>Two hotels replied to your pitches this week, and Palms Dania Beach is waiting on your dates before they can hold the room.</p>
+    </div>
+
+    <div class="ukTodo">
+      <div class="ukTodo_text">
+        <p class="ukTodo_title">Palms Dania Beach is waiting on your dates</p>
+        <p class="ukTodo_sub">They accepted your pitch four days ago. Send your availability to lock the stay in.</p>
+      </div>
+      <button class="ukBtn" type="button" data-goto="inbox" data-preset="1">Send your dates</button>
+    </div>
+
+    <div class="ukStats">
+      <div class="ukStat"><p class="ukStat_label">Pitches sent</p><p class="ukStat_value">24</p><p class="ukStat_note"><strong>6</strong> this month</p></div>
+      <div class="ukStat"><p class="ukStat_label">Stays booked</p><p class="ukStat_value">7</p><p class="ukStat_note"><strong>2</strong> upcoming</p></div>
+      <div class="ukStat"><p class="ukStat_label">Content delivered</p><p class="ukStat_value">31</p><p class="ukStat_note">Across 7 properties</p></div>
+      <div class="ukStat"><p class="ukStat_label">Reply rate</p><p class="ukStat_value">38%</p><p class="ukStat_note">Above average</p></div>
+    </div>
+
+    <div class="ukGrid">
+      <div class="ukPanel">
+        <div class="ukPanel_head"><h3 class="ukPanel_title">Your collaborations</h3><a class="ukPanel_more" href="#" data-goto="inbox">See all</a></div>
+        <ul class="ukList ukList--rows">
+          <li data-goto="inbox"><span class="ukList_av">PD</span><span class="ukList_body"><span class="ukList_name">Palms Dania Beach</span><span class="ukList_meta">Pitch accepted, dates needed</span></span><span class="ukTag ukTag--you">Your move</span></li>
+          <li data-goto="inbox"><span class="ukList_av">KF</span><span class="ukList_body"><span class="ukList_name">Kenai Fjords Lodge</span><span class="ukList_meta">Brief sent, awaiting your reply</span></span><span class="ukTag ukTag--you">Your move</span></li>
+          <li data-goto="inbox"><span class="ukList_av">MG</span><span class="ukList_body"><span class="ukList_name">MiraGrace Estate</span><span class="ukList_meta">Content submitted for review</span></span><span class="ukTag ukTag--wait">With hotel</span></li>
+          <li data-goto="inbox"><span class="ukList_av">BH</span><span class="ukList_body"><span class="ukList_name">Belize Hotel Association</span><span class="ukList_meta">Stay completed in June</span></span><span class="ukTag ukTag--done">Closed</span></li>
+        </ul>
+      </div>
+
+      <div class="ukPanel">
+        <div class="ukPanel_head"><h3 class="ukPanel_title">Hotels worth pitching</h3><a class="ukPanel_more" href="#" data-goto="pitch">Open Pitch Pilot</a></div>
+        <ul class="ukList ukList--rows">
+          <li data-goto="pitch"><span class="ukList_av">10</span><span class="ukList_body"><span class="ukList_name">Seward Harbour Hotel</span><span class="ukList_meta">Kenai, Alaska. Rated 10 of 10 for pitching</span></span></li>
+          <li data-goto="pitch"><span class="ukList_av">9</span><span class="ukList_body"><span class="ukList_name">Alyeska Resort</span><span class="ukList_meta">Girdwood, Alaska. Contact verified</span></span></li>
+          <li data-goto="pitch"><span class="ukList_av">9</span><span class="ukList_body"><span class="ukList_name">Talkeetna Roadhouse</span><span class="ukList_meta">Talkeetna, Alaska. Strong winter angle</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BRAND HOME ===================== -->
+  <section class="ukView" data-view="home" data-role="brand" hidden>
+    <div class="ukPageHead">
+      <h2>Good morning, Robert</h2>
+      <p>Twelve creators are waiting on a decision from you, and three of them have been waiting longer than a week.</p>
+    </div>
+
+    <div class="ukTodo">
+      <div class="ukTodo_text">
+        <p class="ukTodo_title">Five applications need a yes or no</p>
+        <p class="ukTodo_sub">Creators typically move on after a week without a reply, and three of these are already past that.</p>
+      </div>
+      <button class="ukBtn" type="button" data-goto="inbox" data-preset="0">Review applications</button>
+    </div>
+
+    <div class="ukStats">
+      <div class="ukStat"><p class="ukStat_label">Live campaigns</p><p class="ukStat_value">4</p><p class="ukStat_note"><strong>1</strong> pending approval</p></div>
+      <div class="ukStat"><p class="ukStat_label">Applications</p><p class="ukStat_value">12</p><p class="ukStat_note"><strong>5</strong> need a decision</p></div>
+      <div class="ukStat"><p class="ukStat_label">Creators hosted</p><p class="ukStat_value">9</p><p class="ukStat_note">Since January</p></div>
+      <div class="ukStat"><p class="ukStat_label">Content received</p><p class="ukStat_value">46</p><p class="ukStat_note">Yours to keep</p></div>
+    </div>
+
+    <div class="ukGrid">
+      <div class="ukPanel">
+        <div class="ukPanel_head"><h3 class="ukPanel_title">Waiting on you</h3><a class="ukPanel_more" href="#" data-goto="inbox">See all</a></div>
+        <ul class="ukList">
+          <li data-goto="inbox"><span class="ukList_av">CD</span><span class="ukList_body"><span class="ukList_name">Cesar D</span><span class="ukList_meta">Applied to Fall Holiday, 8 days ago</span></span><span class="ukTag ukTag--you">Your move</span></li>
+          <li data-goto="inbox"><span class="ukList_av">KC</span><span class="ukList_body"><span class="ukList_name">Kelvis C</span><span class="ukList_meta">Countered on Mayfair TikTok Campaign</span></span><span class="ukTag ukTag--you">Your move</span></li>
+          <li data-goto="inbox"><span class="ukList_av">BR</span><span class="ukList_body"><span class="ukList_name">Brooklyn R</span><span class="ukList_meta">Asked about dates for Summer Campaign</span></span><span class="ukTag ukTag--you">Your move</span></li>
+          <li data-goto="inbox"><span class="ukList_av">AM</span><span class="ukList_body"><span class="ukList_name">Amara M</span><span class="ukList_meta">Content submitted, review due</span></span><span class="ukTag ukTag--wait">In review</span></li>
+        </ul>
+      </div>
+
+      <div class="ukPanel">
+        <div class="ukPanel_head"><h3 class="ukPanel_title">Your campaigns</h3><a class="ukPanel_more" href="#" data-goto="campaigns">Manage</a></div>
+        <ul class="ukList">
+          <li data-goto="campaigns"><span class="ukList_av">SC</span><span class="ukList_body"><span class="ukList_name">Summer Campaign</span><span class="ukList_meta">Miami, Florida. 3 applications</span></span><span class="ukTag ukTag--wait">Pending</span></li>
+          <li data-goto="campaigns"><span class="ukList_av">FH</span><span class="ukList_body"><span class="ukList_name">Fall Holiday</span><span class="ukList_meta">Miami, Florida. 5 applications</span></span><span class="ukTag ukTag--done">Live</span></li>
+          <li data-goto="campaigns"><span class="ukList_av">MT</span><span class="ukList_body"><span class="ukList_name">Mayfair TikTok Campaign</span><span class="ukList_meta">London. 4 applications</span></span><span class="ukTag ukTag--done">Live</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- every other screen renders here from the data layer -->
+  <section class="ukView" data-view="dyn" hidden></section>
+
+</main>
+
+<script src="/assets/js/ukicons.js?v=7" defer></script>
+<script src="/assets/js/ukdata.js?v=7" defer></script>
+<script src="/assets/js/ukviews.js?v=7" defer></script>
+<script src="/assets/js/ukapp.js?v=7" defer></script>
+</body>
+</html>

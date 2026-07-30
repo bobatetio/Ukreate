@@ -1,0 +1,84 @@
+/* ===== Ukreate auth — sign in / sign up, dark theme, matches fc-shared tokens ===== */
+
+.ukAuth{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:clamp(96px,11vw,140px) clamp(20px,6vw,80px) clamp(48px,6vw,90px);overflow:hidden}
+.ukAuth_bg{position:absolute;inset:0;z-index:0}
+.ukAuth_bg img{width:100%;height:100%;object-fit:cover}
+.ukAuth_bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,18,25,.82) 0%,rgba(6,18,25,.9) 55%,#061219 100%)}
+
+.ukAuth_shell{position:relative;z-index:1;width:100%;max-width:1080px;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,4.5vw,72px);align-items:center}
+
+/* ---- left: the pitch ---- */
+.ukAuth_pitch{max-width:460px}
+.ukAuth_pitch .uk_title{text-align:left;font-size:clamp(30px,3.6vw,46px)}
+.ukAuth_pitch .uk_sub{text-align:left;margin-left:0;max-width:420px}
+.ukAuth_proof{list-style:none;margin:clamp(26px,3vw,38px) 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.ukAuth_proof li{display:flex;align-items:flex-start;gap:11px;font:500 clamp(13px,1.05vw,14.5px)/1.45 'Lato',sans-serif;color:rgba(255,255,255,.82);text-wrap:pretty}
+.ukAuth_proof svg{flex:0 0 16px;width:16px;height:16px;margin-top:2px;color:#65d2e9}
+
+/* ---- right: the card ---- */
+.ukAuth_card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);border-radius:26px;padding:clamp(26px,2.6vw,38px);box-shadow:0 34px 80px rgba(0,0,0,.5);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+
+.ukAuth_tabs{display:flex;gap:4px;padding:4px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.08);border-radius:9999px;margin-bottom:clamp(22px,2.4vw,30px)}
+.ukAuth_tab{flex:1;border:none;background:none;cursor:pointer;padding:11px 8px;border-radius:9999px;font:700 12.5px/1 'Lato',sans-serif;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.6);transition:background .25s ease,color .25s ease}
+.ukAuth_tab:hover{color:rgba(255,255,255,.9)}
+.ukAuth_tab[aria-selected="true"]{background:linear-gradient(5.71deg,#d7a543 13.297%,#efc470 89.683%);color:#fff;text-shadow:0 0 .581px #fff;box-shadow:0 1.162px 2.324px rgba(215,165,67,.55)}
+
+.ukAuth_head{margin:0 0 clamp(20px,2.2vw,26px)}
+.ukAuth_h{font-family:"Marcellus SC",serif;font-weight:400;font-size:clamp(24px,2.3vw,30px);line-height:1.12;color:#fff;margin:0;text-wrap:balance}
+.ukAuth_hSub{font:400 14px/1.55 'Lato',sans-serif;color:rgba(255,255,255,.62);margin:8px 0 0;text-wrap:pretty}
+
+/* ---- role fork ---- */
+.ukAuth_roles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:clamp(20px,2.2vw,26px)}
+.ukAuth_role{position:relative;display:block;cursor:pointer}
+.ukAuth_role input{position:absolute;opacity:0;width:100%;height:100%;top:0;left:0;margin:0;cursor:pointer}
+.ukAuth_roleBox{display:flex;flex-direction:column;gap:6px;padding:16px 15px;border-radius:18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);transition:border-color .25s ease,background .25s ease,transform .25s ease}
+.ukAuth_role:hover .ukAuth_roleBox{background:rgba(255,255,255,.06);transform:translateY(-2px)}
+.ukAuth_role input:focus-visible+.ukAuth_roleBox{outline:2px solid #e6b64c;outline-offset:3px}
+.ukAuth_role input:checked+.ukAuth_roleBox{background:linear-gradient(180deg,#122a35,#0a1720);border-color:rgba(215,165,67,.55);box-shadow:0 12px 30px rgba(0,0,0,.4)}
+.ukAuth_roleName{font:700 14px/1.2 'Lato',sans-serif;color:#fff}
+.ukAuth_roleWhat{font:400 12.5px/1.4 'Lato',sans-serif;color:rgba(255,255,255,.6);text-wrap:pretty}
+.ukAuth_role input:checked+.ukAuth_roleBox .ukAuth_roleWhat{color:rgba(255,255,255,.78)}
+
+/* ---- fields ---- */
+.ukAuth_field{margin-bottom:16px}
+.ukAuth_label{display:block;font:700 11px/1 'Lato',sans-serif;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.6);margin-bottom:8px}
+.ukAuth_input{width:100%;box-sizing:border-box;padding:13px 15px;border-radius:14px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.14);color:#fff;font:400 15px/1.4 'Lato',sans-serif;transition:border-color .2s ease,background .2s ease}
+.ukAuth_input::placeholder{color:rgba(255,255,255,.36)}
+.ukAuth_input:hover{border-color:rgba(255,255,255,.24)}
+.ukAuth_input:focus{outline:none;border-color:#d7a543;background:rgba(0,0,0,.42);box-shadow:0 0 0 3px rgba(215,165,67,.22)}
+
+.ukAuth_pw{position:relative}
+.ukAuth_pw .ukAuth_input{padding-right:52px}
+.ukAuth_reveal{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:none;border-radius:11px;cursor:pointer;color:rgba(255,255,255,.55)}
+.ukAuth_reveal:hover{color:#fff;background:rgba(255,255,255,.07)}
+.ukAuth_reveal:focus-visible{outline:2px solid #e6b64c;outline-offset:2px}
+
+.ukAuth_row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:4px 0 22px;flex-wrap:wrap}
+.ukAuth_check{display:flex;align-items:center;gap:9px;font:400 13.5px/1.3 'Lato',sans-serif;color:rgba(255,255,255,.7);cursor:pointer}
+.ukAuth_check input{width:17px;height:17px;accent-color:#d7a543;cursor:pointer}
+.ukAuth_link{font:500 13.5px/1.3 'Lato',sans-serif;color:#65d2e9;text-decoration:none;white-space:nowrap}
+.ukAuth_link:hover{color:#8fe0f2;text-decoration:underline}
+
+.ukAuth_lead{font:400 12.5px/1.5 'Lato',sans-serif;color:rgba(255,255,255,.55);margin:0 0 10px;text-wrap:pretty}
+.ukAuth_submit{width:100%;justify-content:center;border-radius:14px;font-weight:700}
+.ukAuth_alt{font:400 13.5px/1.5 'Lato',sans-serif;color:rgba(255,255,255,.6);text-align:center;margin:20px 0 0}
+.ukAuth_alt button{background:none;border:none;padding:0;font:700 13.5px/1.5 'Lato',sans-serif;color:#65d2e9;cursor:pointer}
+.ukAuth_alt button:hover{color:#8fe0f2;text-decoration:underline}
+
+.ukAuth_legal{font:400 12px/1.55 'Lato',sans-serif;color:rgba(255,255,255,.45);margin:18px 0 0;text-align:center;text-wrap:pretty}
+.ukAuth_legal a{color:rgba(255,255,255,.7);text-decoration:underline}
+
+.ukAuth_panel[hidden]{display:none}
+.ukAuth_only{display:none}
+.ukAuth_only.is-on{display:block}
+
+@media (max-width:900px){
+  .ukAuth_shell{grid-template-columns:1fr;max-width:520px;gap:clamp(28px,5vw,40px)}
+  .ukAuth_pitch{max-width:none;text-align:center}
+  .ukAuth_pitch .uk_title,.ukAuth_pitch .uk_sub{text-align:center}
+  .ukAuth_pitch .uk_sub{margin-inline:auto}
+  .ukAuth_proof{display:none}
+}
+@media (max-width:420px){
+  .ukAuth_roles{grid-template-columns:1fr}
+}

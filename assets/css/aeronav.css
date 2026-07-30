@@ -182,7 +182,12 @@
     display:flex; flex-direction:column; gap:12px;
     margin-top:auto; padding-top:36px; flex-shrink:0;
   }
-  .aeroNav_mobileCta .aeroBtn{width:100%; min-height:48px; font-size:15px}
+  /* box-sizing is explicit here: /for-creators/ inherits no border-box reset, so
+     width:100% plus padding measured 382px inside a 334px column and ran off the
+     right edge of the panel. */
+  .aeroNav_mobileCta{box-sizing:border-box;max-width:100%}
+  .aeroNav_mobileCta .aeroBtn{box-sizing:border-box;width:100%;max-width:100%;min-height:48px;font-size:15px}
+  .aeroNav_links .aeroNav_link{box-sizing:border-box;max-width:100%}
 }
 @media (prefers-reduced-motion:reduce){
   .aeroNav *{transition:none!important}

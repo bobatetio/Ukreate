@@ -22,7 +22,26 @@
   var TAU_MAG = 0.08;                // springy hover (scale + facing)
   var G = Math.sqrt(SX * SX + SY * SY);
 
+  // MOBILE_OFF: the ride is a desktop-only choreography. Below this width the
+  // layer is removed and its clips are never fetched — ten videos was the bulk
+  // of the mobile payload for an effect that has nowhere to play.
+  var MOBILE_MAX = 900;
+
+  function stripForMobile() {
+    var surfer = document.querySelector('.surfer[data-surfer]');
+    if (!surfer) return false;
+    if ((window.innerWidth || 0) > MOBILE_MAX) return false;
+    surfer.querySelectorAll('video').forEach(function (v) {
+      v.removeAttribute('src'); v.removeAttribute('autoplay'); v.preload = 'none';
+      try { v.load(); } catch (e) {}
+    });
+    surfer.style.display = 'none';
+    surfer.dataset.ready = '1';
+    return true;
+  }
+
   function init() {
+    if (stripForMobile()) return;
     var surfer = document.querySelector('.surfer[data-surfer]');
     if (!surfer || surfer.dataset.ready === '1') return;
     var slot = document.querySelector('.surferSlot');

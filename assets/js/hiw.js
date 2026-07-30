@@ -6,6 +6,21 @@
    - Card content stays on the last step while the section exits; the active
      card also tilts in 3D toward the cursor. Off on small screens. */
 (function () {
+  var ukIdleRun = true;
+/* MOBILE_IDLE: this loop ran unconditionally at 60fps for the life of the page.
+   On a phone, four scripts doing that plus the WebGL bundle was the hang. The
+   loop now only runs while its own section is on screen. */
+function ukIdleGate(el, run, stop) {
+  if (!el || !('IntersectionObserver' in window)) { run(); return; }
+  var on = false;
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting && !on) { on = true; run(); }
+      else if (!e.isIntersecting && on) { on = false; if (stop) stop(); }
+    });
+  }, { rootMargin: '200px 0px' }).observe(el);
+}
+
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
   function init() {
@@ -71,11 +86,21 @@
       if (fills[0]) fills[0].style.height = (clamp(f1, 0, 1) * 100).toFixed(1) + '%';
       if (fills[1]) fills[1].style.height = (clamp(f2, 0, 1) * 100).toFixed(1) + '%';
 
-      requestAnimationFrame(frame);
+      if (ukIdleRun) requestAnimationFrame(frame);
     }
-    requestAnimationFrame(frame);
+    if (ukIdleRun) requestAnimationFrame(frame);
   }
 
+  // only animate while the section is anywhere near the viewport
+  if ('IntersectionObserver' in window) {
+    var t = document.querySelector('.hiw');
+    if (t) new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var was = ukIdleRun; ukIdleRun = e.isIntersecting;
+        if (ukIdleRun && !was) requestAnimationFrame(function () {});
+      });
+    }, { rootMargin: '200px 0px' }).observe(t);
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
   document.addEventListener('swup:contentReplaced', init);

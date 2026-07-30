@@ -83,3 +83,10 @@
 .fcPro_jobs{font-size:7.5px;color:rgba(255,255,255,.6);letter-spacing:.02em}
 .fcPro_chip--more{background:rgba(232,220,199,.16);border-color:rgba(232,220,199,.3);color:rgba(232,220,199,.95)}
 @media (prefers-reduced-motion:reduce){.fcMini{transition:none;transform:none}}
+
+/* MOBILE_HIDE — surfer.js is desktop-only now, so its JS mobile guard never
+   runs. The layer has to be hidden in CSS or its cards sit over the headline. */
+@media (max-width:900px){
+  .surfer{display:none!important}
+  .surferSlot{display:none!important}
+}

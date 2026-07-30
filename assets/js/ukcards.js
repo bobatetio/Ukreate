@@ -4,6 +4,21 @@
    into the intertwined pose. Fully reversible with scroll direction.
    Disabled on small screens (cards stack) and for reduced-motion. */
 (function () {
+  var ukIdleRun = true;
+/* MOBILE_IDLE: this loop ran unconditionally at 60fps for the life of the page.
+   On a phone, four scripts doing that plus the WebGL bundle was the hang. The
+   loop now only runs while its own section is on screen. */
+function ukIdleGate(el, run, stop) {
+  if (!el || !('IntersectionObserver' in window)) { run(); return; }
+  var on = false;
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting && !on) { on = true; run(); }
+      else if (!e.isIntersecting && on) { on = false; if (stop) stop(); }
+    });
+  }, { rootMargin: '200px 0px' }).observe(el);
+}
+
   var ROT = 4;    // final tilt, degrees
   var DX = 39;    // inward slide each card, px (closes the 60px gap + ~18px overlap)
 
@@ -34,11 +49,21 @@
       wo.style.transform = 'translateX(' + (e * DX).toFixed(1) + 'px) rotate(' + (-e * ROT).toFixed(2) + 'deg)';
       wa.style.transform = 'translateX(' + (-e * DX).toFixed(1) + 'px) rotate(' + (e * ROT).toFixed(2) + 'deg)';
 
-      requestAnimationFrame(frame);
+      if (ukIdleRun) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
 
+  // only animate while the section is anywhere near the viewport
+  if ('IntersectionObserver' in window) {
+    var t = document.querySelector('.ukComp_cards');
+    if (t) new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var was = ukIdleRun; ukIdleRun = e.isIntersecting;
+        if (ukIdleRun && !was) requestAnimationFrame(function () {});
+      });
+    }, { rootMargin: '200px 0px' }).observe(t);
+  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
   document.addEventListener('swup:contentReplaced', init);

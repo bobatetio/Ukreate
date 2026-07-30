@@ -3,6 +3,20 @@
    from a thin centre band to full height while the picture eases from a slight
    zoom back to 1:1, scrubbed to scroll position. Pure clip-path + transform. */
 (function () {
+/* MOBILE_IDLE: this loop ran unconditionally at 60fps for the life of the page.
+   On a phone, four scripts doing that plus the WebGL bundle was the hang. The
+   loop now only runs while its own section is on screen. */
+function ukIdleGate(el, run, stop) {
+  if (!el || !('IntersectionObserver' in window)) { run(); return; }
+  var on = false;
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (e.isIntersecting && !on) { on = true; run(); }
+      else if (!e.isIntersecting && on) { on = false; if (stop) stop(); }
+    });
+  }, { rootMargin: '200px 0px' }).observe(el);
+}
+
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
   function init() {
@@ -33,7 +47,7 @@
       if (img) img.style.transform = 'scale(' + (1 + (1 - p) * MAX_ZOOM).toFixed(4) + ')';
       requestAnimationFrame(loop);
     }
-    requestAnimationFrame(loop);
+    ukIdleGate(sec, function () { requestAnimationFrame(loop); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

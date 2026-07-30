@@ -1,10 +1,10 @@
 /* Aerodynamics-style navbar (from /oplossingen), grafted onto the Legion/Izanami site.
    Ukreate logo, real Unica77 + Quaria fonts, faithful hover/underline/CTA/hamburger. */
 
-@font-face{font-family:'Unica77';src:url('/assets/font/aero/Unica77-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Unica77';src:url('/assets/font/aero/Unica77-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-@font-face{font-family:'Quaria Display';src:url('/assets/font/aero/QuariaDisplay-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:'Quaria Display';src:url('/assets/font/aero/QuariaDisplay-Italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'Unica77';src:url('/Ukreate/assets/font/aero/Unica77-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Unica77';src:url('/Ukreate/assets/font/aero/Unica77-Medium.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'Quaria Display';src:url('/Ukreate/assets/font/aero/QuariaDisplay-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Quaria Display';src:url('/Ukreate/assets/font/aero/QuariaDisplay-Italic.woff2') format('woff2');font-weight:400;font-style:italic;font-display:swap}
 
 /* hide the original Izanami top bar (kept in DOM so its JS never null-errors) */
 .header{display:none!important}

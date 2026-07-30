@@ -57,6 +57,10 @@
   box-shadow:0 26px 55px rgba(0,0,0,.5);
   /* set from JS: rotateY(i * step) translateZ(-radius) */
 }
+.ukCyl_card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:brightness(.92);
+}
 .ukCyl_card video{
   width:100%;height:100%;object-fit:cover;display:block;
   filter:brightness(.92);

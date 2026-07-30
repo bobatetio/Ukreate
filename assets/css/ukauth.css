@@ -24,7 +24,7 @@
 .ukAuth_tab[aria-selected="true"]{background:linear-gradient(5.71deg,#d7a543 13.297%,#efc470 89.683%);color:#fff;text-shadow:0 0 .581px #fff;box-shadow:0 1.162px 2.324px rgba(215,165,67,.55)}
 
 .ukAuth_head{margin:0 0 clamp(20px,2.2vw,26px)}
-.ukAuth_h{font-family:"Marcellus SC",serif;font-weight:400;font-size:clamp(24px,2.3vw,30px);line-height:1.12;color:#fff;margin:0;text-wrap:balance}
+.ukAuth_h{font-family:"Marcellus",serif;font-weight:400;font-size:clamp(24px,2.3vw,30px);line-height:1.12;color:#fff;margin:0;text-wrap:balance}
 .ukAuth_hSub{font:400 14px/1.55 'Lato',sans-serif;color:rgba(255,255,255,.62);margin:8px 0 0;text-wrap:pretty}
 
 /* ---- role fork ---- */

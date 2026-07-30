@@ -39,10 +39,25 @@
     return n;
   }
 
-  function buildCard(c) {
+  // Phones get still portraits rather than 20 video elements. The drum reads the
+  // same, but the page went from ~105MB to a fraction of it.
+  var STILLS = window.matchMedia && window.matchMedia('(max-width: 900px)').matches;
+  var PORTRAITS = ['orbit-01','orbit-02','orbit-03','orbit-04','orbit-05','orbit-06',
+                   'orbit-07','orbit-08','orbit-09','orbit-10','orbit-11'];
+
+  function buildCard(c, idx) {
     var card = el('div', 'ukCyl_card');
     card.setAttribute('role', 'group');
     card.setAttribute('aria-label', c.name + ', ' + c.loc);
+
+    if (STILLS) {
+      var img = document.createElement('img');
+      img.src = '/Ukreate/assets/img/uk/orbit/' + PORTRAITS[idx % PORTRAITS.length] + '.webp';
+      img.alt = ''; img.width = 240; img.height = 240;
+      img.loading = 'lazy'; img.decoding = 'async';
+      card.appendChild(img);
+      return { el: card, video: null, playing: false };
+    }
 
     var vid = document.createElement('video');
     vid.src = '/Ukreate/assets/video/ugc/' + c.v + '.mp4';
@@ -64,8 +79,8 @@
     var drum = el('div', 'ukCyl_drum', host);
     host.style.setProperty('--n', n);
 
-    var cards = seats.map(function (c) {
-      var card = buildCard(c);
+    var cards = seats.map(function (c, i) {
+      var card = buildCard(c, i);
       drum.appendChild(card.el);
       return card;
     });
@@ -111,6 +126,7 @@
         if (face < -180) face += 360;
         var front = Math.abs(face) <= PLAY_ARC;
         var c = cards[i];
+        if (!c.video) continue;
         if (front && !c.playing) {
           c.playing = true;
           var p = c.video.play();
@@ -126,7 +142,7 @@
     function start() { if (raf === null) { last = 0; raf = requestAnimationFrame(frame); } }
     function stop() {
       if (raf !== null) { cancelAnimationFrame(raf); raf = null; }
-      cards.forEach(function (c) { if (c.playing) { c.playing = false; c.video.pause(); } });
+      cards.forEach(function (c) { if (c.video && c.playing) { c.playing = false; c.video.pause(); } });
     }
 
     drum.style.transform = 'rotateY(0deg)';

@@ -110,7 +110,7 @@
   display:flex;align-items:center;gap:14px;padding:0 clamp(18px,2.4vw,32px);
   background:var(--top-bg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);
   transition:background .3s ease,border-color .3s ease}
-.ukTop_title{font-family:"Marcellus SC",serif;font-weight:400;font-size:20px;line-height:1.1;margin:0;color:var(--text);white-space:nowrap}
+.ukTop_title{font-family:"Marcellus",serif;font-weight:400;font-size:20px;line-height:1.1;margin:0;color:var(--text);white-space:nowrap}
 .ukTop_spacer{flex:1 1 auto}
 .ukTop_search{position:relative;flex:0 1 300px;display:flex;align-items:center}
 .ukTop_search .ukIco{position:absolute;left:13px;color:var(--text-3);pointer-events:none;display:inline-flex}
@@ -149,7 +149,7 @@
 .ukView[hidden]{display:none}
 
 .ukPageHead{margin:0 0 clamp(22px,2.6vw,32px);max-width:720px}
-.ukPageHead h2{font-family:"Marcellus SC",serif;font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.1;margin:0;
+.ukPageHead h2{font-family:"Marcellus",serif;font-weight:400;font-size:clamp(26px,2.8vw,36px);line-height:1.1;margin:0;
   color:var(--text);text-wrap:balance}
 .ukPageHead p{font:400 15px/1.6 'Lato',sans-serif;color:var(--text-2);margin:10px 0 0;text-wrap:pretty}
 
@@ -157,7 +157,7 @@
 .ukStats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:clamp(22px,2.6vw,32px)}
 .ukStat{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px}
 .ukStat_label{font:700 10.5px/1 'Lato',sans-serif;text-transform:uppercase;letter-spacing:.15em;color:var(--text-2);margin:0 0 12px;white-space:nowrap}
-.ukStat_value{font-family:"Marcellus SC",serif;font-weight:400;font-size:34px;line-height:1;color:var(--text);margin:0;white-space:nowrap}
+.ukStat_value{font-family:"Marcellus",serif;font-weight:400;font-size:34px;line-height:1;color:var(--text);margin:0;white-space:nowrap}
 .ukStat_note{font:400 12.5px/1.4 'Lato',sans-serif;color:var(--text-2);margin:9px 0 0;white-space:nowrap}
 .ukStat_note strong{color:var(--accent);font-weight:700}
 
@@ -165,7 +165,7 @@
 .ukGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;align-items:start}
 .ukPanel{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:clamp(20px,2vw,26px)}
 .ukPanel_head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 18px}
-.ukPanel_title{font-family:"Marcellus SC",serif;font-weight:400;font-size:19px;line-height:1.15;margin:0;color:var(--text)}
+.ukPanel_title{font-family:"Marcellus",serif;font-weight:400;font-size:19px;line-height:1.15;margin:0;color:var(--text)}
 .ukPanel_more{font:600 12.5px/1 'Lato',sans-serif;color:var(--accent);text-decoration:none;white-space:nowrap;cursor:pointer}
 .ukPanel_more:hover{text-decoration:underline}
 
@@ -201,7 +201,7 @@
 
 /* empty + placeholder */
 .ukEmpty{text-align:center;padding:clamp(30px,4vw,52px) 20px}
-.ukEmpty_t{font-family:"Marcellus SC",serif;font-weight:400;font-size:21px;color:var(--text);margin:0 0 8px}
+.ukEmpty_t{font-family:"Marcellus",serif;font-weight:400;font-size:21px;color:var(--text);margin:0 0 8px}
 .ukEmpty_p{font:400 14px/1.6 'Lato',sans-serif;color:var(--text-2);margin:0 auto;max-width:420px;text-wrap:pretty}
 .ukStub{border:1px dashed var(--line);background:var(--surface-2)}
 
@@ -244,7 +244,7 @@
   display:flex;flex-direction:column;gap:14px}
 .ukCard.is-current{border-color:var(--active-ring);box-shadow:0 0 0 1px var(--active-ring)}
 .ukCard_top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-.ukCard_t{font-family:"Marcellus SC",serif;font-weight:400;font-size:19px;line-height:1.15;margin:0;color:var(--text);text-wrap:balance}
+.ukCard_t{font-family:"Marcellus",serif;font-weight:400;font-size:19px;line-height:1.15;margin:0;color:var(--text);text-wrap:balance}
 .ukCard_sub{font:400 12.5px/1.4 'Lato',sans-serif;color:var(--text-2);margin:5px 0 0}
 .ukCard_lb{font:700 10px/1 'Lato',sans-serif;text-transform:uppercase;letter-spacing:.15em;color:var(--text-3);margin:0}
 .ukCard_body{font:400 13.5px/1.55 'Lato',sans-serif;color:var(--text-2);margin:0;text-wrap:pretty}
@@ -252,7 +252,7 @@
 .ukWho{display:flex;align-items:center;gap:12px}
 
 .ukScore{flex:0 0 auto;display:flex;align-items:baseline;gap:1px;padding:7px 12px;border-radius:12px;
-  background:var(--tag-done-bg);color:var(--text);font-family:"Marcellus SC",serif;font-size:20px;line-height:1}
+  background:var(--tag-done-bg);color:var(--text);font-family:"Marcellus",serif;font-size:20px;line-height:1}
 .ukScore em{font:400 11px/1 'Lato',sans-serif;color:var(--text-3);font-style:normal}
 .ukScore.is-hot{background:var(--tag-wait-bg);color:var(--tag-wait-ink)}
 .ukScore.is-hot em{color:var(--tag-wait-ink);opacity:.7}
@@ -322,7 +322,7 @@
 .ukField_i{width:100%;box-sizing:border-box;padding:12px 14px;border-radius:13px;background:var(--input-bg);
   border:1px solid var(--input-line);color:var(--text);font:400 14px/1.5 'Lato',sans-serif;resize:vertical}
 .ukField_i:focus{outline:none;border-color:var(--uk-gold);box-shadow:0 0 0 3px rgba(215,165,67,.2)}
-.ukPrice{font-family:"Marcellus SC",serif;font-size:38px;line-height:1;color:var(--text);margin:0;white-space:nowrap}
+.ukPrice{font-family:"Marcellus",serif;font-size:38px;line-height:1;color:var(--text);margin:0;white-space:nowrap}
 .ukPrice em{font:400 13px/1 'Lato',sans-serif;color:var(--text-3);font-style:normal;margin-left:7px}
 .ukTicks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .ukTicks li{position:relative;padding-left:24px;font:500 13.5px/1.45 'Lato',sans-serif;color:var(--text-2);text-wrap:pretty}
